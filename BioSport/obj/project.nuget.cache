@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "Hf7bPfo/RbI=",
+  "dgSpecHash": "R2sfwsuV9D4=",
   "success": true,
   "projectFilePath": "/Users/tonyvargas/Downloads/BioSport/BioSport/BioSport.csproj",
   "expectedPackageFiles": [
     "/Users/tonyvargas/.nuget/packages/azure.core/1.47.1/azure.core.1.47.1.nupkg.sha512",
     "/Users/tonyvargas/.nuget/packages/azure.identity/1.14.2/azure.identity.1.14.2.nupkg.sha512",
+    "/Users/tonyvargas/.nuget/packages/bcrypt.net-next/4.2.0/bcrypt.net-next.4.2.0.nupkg.sha512",
     "/Users/tonyvargas/.nuget/packages/microsoft.aspnetcore.identity.entityframeworkcore/10.0.9/microsoft.aspnetcore.identity.entityframeworkcore.10.0.9.nupkg.sha512",
     "/Users/tonyvargas/.nuget/packages/microsoft.bcl.asyncinterfaces/8.0.0/microsoft.bcl.asyncinterfaces.8.0.0.nupkg.sha512",
     "/Users/tonyvargas/.nuget/packages/microsoft.bcl.cryptography/9.0.4/microsoft.bcl.cryptography.9.0.4.nupkg.sha512",

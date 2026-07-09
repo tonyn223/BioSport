@@ -140,3 +140,4 @@
 /Users/tonyvargas/Downloads/BioSport/BioSport/obj/Debug/net10.0/BioSport.genruntimeconfig.cache
 /Users/tonyvargas/Downloads/BioSport/BioSport/obj/Debug/net10.0/ref/BioSport.dll
 /Users/tonyvargas/Downloads/BioSport/BioSport/obj/Debug/net10.0/BioSport.sourcelink.json
+/Users/tonyvargas/Downloads/BioSport/BioSport/bin/Debug/net10.0/BCrypt-Net-Next.dll
