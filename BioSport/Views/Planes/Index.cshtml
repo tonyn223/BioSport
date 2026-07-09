@@ -1,0 +1,45 @@
+@model IEnumerable<BioSport.Models.Plan>
+@{
+    ViewData["Title"] = "Gestionar Planes";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-primary">Gestionar Planes</h1>
+        <a asp-action="Create" class="btn btn-success">+ Nuevo Plan</a>
+    </div>
+
+    @if (TempData["Mensaje"] != null)
+    {
+        <div class="alert alert-success">@TempData["Mensaje"]</div>
+    }
+
+    <table class="table table-striped shadow">
+        <thead class="table-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Duración (días)</th>
+                <th>Descripción</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var plan in Model)
+            {
+                <tr>
+                    <td>@plan.Nombre</td>
+                    <td>₡@plan.Precio.ToString("N0")</td>
+                    <td>@plan.DuracionDias</td>
+                    <td>@plan.Descripcion</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@plan.IdPlan" class="btn btn-sm btn-warning">Editar</a>
+                        <a asp-action="Delete" asp-route-id="@plan.IdPlan" class="btn btn-sm btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a asp-controller="Dashboard" asp-action="AdminDashboard" class="btn btn-secondary">← Volver al Panel</a>
+</div>
