@@ -1,0 +1,52 @@
+@model BioSport.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "Iniciar Sesión";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body p-5">
+                    <h2 class="text-center mb-4 text-primary">BioSport - Iniciar Sesión</h2>
+
+                    <form asp-action="Login" method="post">
+                        <input type="hidden" asp-for="@ViewData["ReturnUrl"]" name="returnUrl" />
+                        
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" style="display:none"></div>
+                        @if (!ViewData.ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger">
+                                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                                {
+                                    <p class="mb-0">@error.ErrorMessage</p>
+                                }
+                            </div>
+                        }
+
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label">Correo Electrónico</label>
+                            <input asp-for="Email" class="form-control" placeholder="tu@correo.com" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Password" class="form-label">Contraseña</label>
+                            <input asp-for="Password" class="form-control" placeholder="Tu contraseña" />
+                        </div>
+
+                        <div class="mb-3 form-check">
+                            <input asp-for="RememberMe" class="form-check-input" />
+                            <label asp-for="RememberMe" class="form-check-label">Recuérdame</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 mb-3">Iniciar Sesión</button>
+
+                        <p class="text-center">
+                            ¿No tienes cuenta? <a asp-action="Register">Regístrate aquí</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

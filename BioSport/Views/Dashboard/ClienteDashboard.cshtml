@@ -1,0 +1,26 @@
+@{
+    ViewData["Title"] = "Mi Panel";
+}
+
+<div class="container mt-4">
+    <h1 class="text-success mb-4">Mi Panel</h1>
+    <p class="text-muted">Bienvenido, @User.Identity!.Name</p>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5>Mi Membresía</h5>
+                    <a href="#" class="btn btn-primary">Ver</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5>Mis Rutinas</h5>
+                    <a href="#" class="btn btn-success">Ver</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

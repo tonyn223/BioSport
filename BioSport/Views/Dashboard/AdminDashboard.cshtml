@@ -1,0 +1,34 @@
+@{
+    ViewData["Title"] = "Panel Administrativo";
+}
+
+<div class="container mt-4">
+    <h1 class="text-primary mb-4">Panel Administrativo</h1>
+    <p class="text-muted">Bienvenido, @User.Identity!.Name</p>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5>Gestionar Usuarios</h5>
+                    <a href="#" class="btn btn-primary">Ir</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5>Gestionar Planes</h5>
+                    <a href="#" class="btn btn-success">Ir</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5>Reportes</h5>
+                    <a href="#" class="btn btn-info">Ir</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
