@@ -1,0 +1,35 @@
+@model BioSport.Models.Rutina
+@{
+    ViewData["Title"] = "Nueva Rutina";
+}
+
+<div class="container mt-4">
+    <h1 class="text-warning mb-4">Crear Nueva Rutina</h1>
+
+    <div class="card shadow p-4" style="max-width: 600px;">
+        <form asp-action="Create" method="post">
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger">
+                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                    {
+                        <p class="mb-0">@error.ErrorMessage</p>
+                    }
+                </div>
+            }
+
+            <div class="mb-3">
+                <label asp-for="Nombre" class="form-label">Nombre de la Rutina</label>
+                <input asp-for="Nombre" class="form-control" placeholder="Ej: Rutina de fuerza - Nivel principiante" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Descripcion" class="form-label">Descripción / Ejercicios</label>
+                <textarea asp-for="Descripcion" class="form-control" rows="6" placeholder="Ej: 3 series de 12 repeticiones de sentadillas, 3x10 press banca..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-success">Guardar Rutina</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>

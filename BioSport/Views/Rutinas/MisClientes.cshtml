@@ -1,0 +1,30 @@
+@model IEnumerable<BioSport.Models.RutinaAsignada>
+@{
+    ViewData["Title"] = "Clientes Asignados";
+}
+
+<div class="container mt-4">
+    <h1 class="text-info mb-4">Clientes con Rutinas Asignadas</h1>
+
+    <table class="table table-striped shadow">
+        <thead class="table-dark">
+            <tr>
+                <th>Cliente</th>
+                <th>Rutina</th>
+                <th>Fecha Asignación</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@(item.Cliente?.Nombre ?? "N/A")</td>
+                    <td>@(item.Rutina?.Nombre ?? "N/A")</td>
+                    <td>@item.FechaAsignacion?.ToString("dd/MM/yyyy")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a asp-action="Index" class="btn btn-secondary">← Volver a Rutinas</a>
+</div>
