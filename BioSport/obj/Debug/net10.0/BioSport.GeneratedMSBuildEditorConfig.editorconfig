@@ -87,6 +87,22 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGxhbmVzL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/tonyvargas/Downloads/BioSport/BioSport/Views/Promociones/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvbW9jaW9uZXMvQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/tonyvargas/Downloads/BioSport/BioSport/Views/Promociones/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvbW9jaW9uZXMvRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/tonyvargas/Downloads/BioSport/BioSport/Views/Promociones/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvbW9jaW9uZXMvRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/tonyvargas/Downloads/BioSport/BioSport/Views/Promociones/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvbW9jaW9uZXMvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/tonyvargas/Downloads/BioSport/BioSport/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
