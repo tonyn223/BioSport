@@ -2,18 +2,15 @@
 @{
     ViewData["Title"] = "Mis Rutinas";
 }
-
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="text-warning">Mis Rutinas</h1>
         <a asp-action="Create" class="btn btn-success">+ Nueva Rutina</a>
     </div>
-
     @if (TempData["Mensaje"] != null)
     {
         <div class="alert alert-success">@TempData["Mensaje"]</div>
     }
-
     <table class="table table-striped shadow">
         <thead class="table-dark">
             <tr>
@@ -31,13 +28,14 @@
                     <td>@rutina.Descripcion</td>
                     <td>@rutina.FechaCreacion?.ToString("dd/MM/yyyy")</td>
                     <td>
-                        <a asp-action="Asignar" asp-route-id="@rutina.IdRutina" class="btn btn-sm btn-primary">Asignar a Cliente</a>
+                        <a asp-action="Asignar" asp-route-id="@rutina.IdRutina" class="btn btn-sm btn-primary">Asignar</a>
+                        <a asp-action="Edit" asp-route-id="@rutina.IdRutina" class="btn btn-sm btn-warning">Editar</a>
+                        <a asp-action="Delete" asp-route-id="@rutina.IdRutina" class="btn btn-sm btn-danger">Eliminar</a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
-
     <a asp-action="MisClientes" class="btn btn-info">Ver Clientes Asignados</a>
     <a asp-controller="Dashboard" asp-action="EntrenadorDashboard" class="btn btn-secondary">← Volver al Panel</a>
 </div>
