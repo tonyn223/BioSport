@@ -1,0 +1,37 @@
+@model BioSport.Models.Rutina
+@{
+    ViewData["Title"] = "Editar Rutina";
+}
+
+<div class="container mt-4">
+    <h1 class="text-warning mb-4">Editar Rutina</h1>
+
+    <div class="card shadow p-4" style="max-width: 600px;">
+        <form asp-action="Edit" method="post">
+            <input type="hidden" asp-for="IdRutina" />
+
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger">
+                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                    {
+                        <p class="mb-0">@error.ErrorMessage</p>
+                    }
+                </div>
+            }
+
+            <div class="mb-3">
+                <label asp-for="Nombre" class="form-label">Nombre de la Rutina</label>
+                <input asp-for="Nombre" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Descripcion" class="form-label">Descripción / Ejercicios</label>
+                <textarea asp-for="Descripcion" class="form-control" rows="6"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>

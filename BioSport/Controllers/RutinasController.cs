@@ -63,6 +63,95 @@ namespace BioSport.Controllers
             return View(rutina);
         }
 
+        // GET: /Rutinas/Edit/5
+        public async Task<IActionResult> Edit(int id)
+        {
+            var idEntrenador = ObtenerIdUsuarioActual();
+            var rutina = await _context.Rutinas
+                .FirstOrDefaultAsync(r => r.IdRutina == id && r.IdEntrenador == idEntrenador);
+
+            if (rutina == null)
+            {
+                return NotFound();
+            }
+
+            return View(rutina);
+        }
+
+        // POST: /Rutinas/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, Rutina rutina)
+        {
+            var idEntrenador = ObtenerIdUsuarioActual();
+
+            if (id != rutina.IdRutina)
+            {
+                return NotFound();
+            }
+
+            ModelState.Remove("IdEntrenador");
+            ModelState.Remove("Entrenador");
+
+            if (ModelState.IsValid)
+            {
+                var rutinaExistente = await _context.Rutinas
+                    .FirstOrDefaultAsync(r => r.IdRutina == id && r.IdEntrenador == idEntrenador);
+
+                if (rutinaExistente == null)
+                {
+                    return NotFound();
+                }
+
+                rutinaExistente.Nombre = rutina.Nombre;
+                rutinaExistente.Descripcion = rutina.Descripcion;
+
+                await _context.SaveChangesAsync();
+                TempData["Mensaje"] = "Rutina actualizada exitosamente.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(rutina);
+        }
+
+        // GET: /Rutinas/Delete/5
+        public async Task<IActionResult> Delete(int id)
+        {
+            var idEntrenador = ObtenerIdUsuarioActual();
+            var rutina = await _context.Rutinas
+                .FirstOrDefaultAsync(r => r.IdRutina == id && r.IdEntrenador == idEntrenador);
+
+            if (rutina == null)
+            {
+                return NotFound();
+            }
+
+            return View(rutina);
+        }
+
+        // POST: /Rutinas/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var idEntrenador = ObtenerIdUsuarioActual();
+            var rutina = await _context.Rutinas
+                .FirstOrDefaultAsync(r => r.IdRutina == id && r.IdEntrenador == idEntrenador);
+
+            if (rutina != null)
+            {
+                // Elimina primero las asignaciones relacionadas
+                var asignaciones = _context.RutinasAsignadas.Where(ra => ra.IdRutina == id);
+                _context.RutinasAsignadas.RemoveRange(asignaciones);
+
+                _context.Rutinas.Remove(rutina);
+                await _context.SaveChangesAsync();
+                TempData["Mensaje"] = "Rutina eliminada exitosamente.";
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
         // GET: /Rutinas/Asignar/5
         public async Task<IActionResult> Asignar(int id)
         {
