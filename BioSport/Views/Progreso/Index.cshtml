@@ -1,0 +1,40 @@
+@model IEnumerable<BioSport.Models.Progreso>
+@{
+    ViewData["Title"] = "Progreso de Clientes";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-info">Progreso de Clientes</h1>
+        <a asp-action="Create" class="btn btn-success">+ Registrar Progreso</a>
+    </div>
+
+    @if (TempData["Mensaje"] != null)
+    {
+        <div class="alert alert-success">@TempData["Mensaje"]</div>
+    }
+
+    <table class="table table-striped shadow">
+        <thead class="table-dark">
+            <tr>
+                <th>Cliente</th>
+                <th>Peso (kg)</th>
+                <th>Observaciones</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td>@(p.Cliente?.Nombre ?? "N/A")</td>
+                    <td>@p.Peso</td>
+                    <td>@p.Observaciones</td>
+                    <td>@p.FechaRegistro?.ToString("dd/MM/yyyy")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a asp-controller="Dashboard" asp-action="EntrenadorDashboard" class="btn btn-secondary">← Volver al Panel</a>
+</div>
