@@ -1,0 +1,73 @@
+@model BioSport.ViewModels.ReporteViewModel
+@{
+    ViewData["Title"] = "Reportes";
+}
+
+<div class="container mt-4">
+    <h1 class="text-primary mb-4">Reportes Generales</h1>
+
+    <div class="row">
+        <div class="col-md-3 mb-4">
+            <div class="card shadow text-center p-3">
+                <h6 class="text-muted">Clientes</h6>
+                <h2 class="text-primary">@Model.TotalClientes</h2>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card shadow text-center p-3">
+                <h6 class="text-muted">Entrenadores</h6>
+                <h2 class="text-warning">@Model.TotalEntrenadores</h2>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card shadow text-center p-3">
+                <h6 class="text-muted">Recepcionistas</h6>
+                <h2 class="text-info">@Model.TotalRecepcionistas</h2>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card shadow text-center p-3">
+                <h6 class="text-muted">Administradores</h6>
+                <h2 class="text-secondary">@Model.TotalAdministradores</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card shadow text-center p-3">
+                <h6 class="text-muted">Membresías Activas</h6>
+                <h2 class="text-success">@Model.MembresiasActivas</h2>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow text-center p-3">
+                <h6 class="text-muted">Membresías Vencidas</h6>
+                <h2 class="text-danger">@Model.MembresiasVencidas</h2>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow text-center p-3">
+                <h6 class="text-muted">Asistencias Hoy</h6>
+                <h2 class="text-primary">@Model.AsistenciasHoy</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card shadow text-center p-3">
+                <h6 class="text-muted">Ingresos Totales</h6>
+                <h2 class="text-success">₡@Model.IngresosTotales.ToString("N0")</h2>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card shadow text-center p-3">
+                <h6 class="text-muted">Plan Más Vendido</h6>
+                <h2 class="text-warning">@Model.PlanMasVendido</h2>
+            </div>
+        </div>
+    </div>
+
+    <a asp-controller="Dashboard" asp-action="AdminDashboard" class="btn btn-secondary">← Volver al Panel</a>
+</div>

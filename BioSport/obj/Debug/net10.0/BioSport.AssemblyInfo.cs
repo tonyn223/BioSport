@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BioSport")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a2842af8e53562d529edecfa36a2757ee7a33771")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eb625d6e0a69d1053286c11bce03157f16a1c504")]
 [assembly: System.Reflection.AssemblyProductAttribute("BioSport")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BioSport")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
