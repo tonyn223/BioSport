@@ -10,7 +10,7 @@
             <div class="card shadow">
                 <div class="card-body text-center">
                     <h5>Mi Membresía</h5>
-                    <a href="#" class="btn btn-primary">Ver</a>
+                    <a asp-controller="Cliente" asp-action="MiMembresia" class="btn btn-primary">Ver</a>
                 </div>
             </div>
         </div>
@@ -18,7 +18,23 @@
             <div class="card shadow">
                 <div class="card-body text-center">
                     <h5>Mis Rutinas</h5>
-                    <a href="#" class="btn btn-success">Ver</a>
+                    <a asp-controller="Cliente" asp-action="MisRutinas" class="btn btn-success">Ver</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5>Mi Progreso</h5>
+                    <a asp-controller="Cliente" asp-action="MiProgreso" class="btn btn-info">Ver</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5>Historial de Pagos</h5>
+                    <a asp-controller="Cliente" asp-action="MisPagos" class="btn btn-danger">Ver</a>
                 </div>
             </div>
         </div>
