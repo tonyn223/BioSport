@@ -1,0 +1,39 @@
+@{
+    ViewData["Title"] = "Registrar Asistencia";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body p-5 text-center">
+                    <h2 class="text-success mb-4">Registrar Asistencia</h2>
+
+                    @if (TempData["Mensaje"] != null)
+                    {
+                        <div class="alert alert-success">@TempData["Mensaje"]</div>
+                    }
+
+                    @if (ViewBag.Error != null)
+                    {
+                        <div class="alert alert-danger">@ViewBag.Error</div>
+                    }
+
+                    <form asp-action="Registrar" method="post">
+                        <div class="mb-4">
+                            <label class="form-label fs-5">Código de Acceso del Cliente</label>
+                            <input type="text" name="codigoAcceso" class="form-control form-control-lg text-center"
+                                   placeholder="0000" maxlength="4" autofocus />
+                        </div>
+
+                        <button type="submit" class="btn btn-success btn-lg w-100 mb-3">Registrar Entrada</button>
+                    </form>
+
+                    <a asp-action="Index" class="btn btn-outline-secondary">Ver Historial</a>
+                    <br />
+                    <a asp-controller="Dashboard" asp-action="RecepcionistaDashboard" class="btn btn-link mt-2">← Volver al Panel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

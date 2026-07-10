@@ -1,0 +1,33 @@
+@model IEnumerable<BioSport.Models.Asistencia>
+@{
+    ViewData["Title"] = "Historial de Asistencia";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-primary">Historial de Asistencia</h1>
+        <a asp-action="Registrar" class="btn btn-success">+ Registrar Entrada</a>
+    </div>
+
+    <table class="table table-striped shadow">
+        <thead class="table-dark">
+            <tr>
+                <th>Cliente</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var asistencia in Model)
+            {
+                <tr>
+                    <td>@(asistencia.Usuario?.Nombre ?? "N/A")</td>
+                    <td>@asistencia.FechaEntrada.ToString("dd/MM/yyyy")</td>
+                    <td>@asistencia.HoraEntrada.ToString(@"hh\:mm")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a asp-controller="Dashboard" asp-action="RecepcionistaDashboard" class="btn btn-secondary">← Volver al Panel</a>
+</div>
