@@ -1,0 +1,49 @@
+@{
+    ViewData["Title"] = "Nueva Membresía";
+    var planes = ViewBag.Planes as List<BioSport.Models.Plan>;
+}
+
+<div class="container mt-4">
+    <h1 class="text-primary mb-4">Asignar Membresía y Registrar Pago</h1>
+
+    <div class="card shadow p-4" style="max-width: 600px;">
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">@ViewBag.Error</div>
+        }
+
+        <form method="post">
+            <div class="mb-3">
+                <label class="form-label">Código de Acceso o Correo del Cliente</label>
+                <input type="text" name="busqueda" class="form-control" placeholder="Ej: 2759 o correo@ejemplo.com" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Plan</label>
+                <select name="idPlan" class="form-control" required>
+                    <option value="">-- Selecciona un plan --</option>
+                    @if (planes != null)
+                    {
+                        @foreach (var plan in planes)
+                        {
+                            <option value="@plan.IdPlan">@plan.Nombre - ₡@plan.Precio.ToString("N0") (@plan.DuracionDias días)</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Método de Pago</label>
+                <select name="metodoPago" class="form-control" required>
+                    <option value="Efectivo">Efectivo</option>
+                    <option value="Tarjeta">Tarjeta</option>
+                    <option value="Transferencia">Transferencia</option>
+                    <option value="SINPE">SINPE Móvil</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-success">Confirmar y Registrar Pago</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>

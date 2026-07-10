@@ -1,0 +1,52 @@
+@model IEnumerable<BioSport.Models.Membresia>
+@{
+    ViewData["Title"] = "Gestionar Membresías";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-primary">Membresías</h1>
+        <a asp-action="Crear" class="btn btn-success">+ Nueva Membresía / Pago</a>
+    </div>
+
+    @if (TempData["Mensaje"] != null)
+    {
+        <div class="alert alert-success">@TempData["Mensaje"]</div>
+    }
+
+    <table class="table table-striped shadow">
+        <thead class="table-dark">
+            <tr>
+                <th>Cliente</th>
+                <th>Plan</th>
+                <th>Inicio</th>
+                <th>Vencimiento</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model)
+            {
+                var vencida = m.FechaVencimiento < DateTime.Now;
+                <tr>
+                    <td>@(m.Usuario?.Nombre ?? "N/A")</td>
+                    <td>@(m.Plan?.Nombre ?? "N/A")</td>
+                    <td>@m.FechaInicio.ToString("dd/MM/yyyy")</td>
+                    <td>@m.FechaVencimiento.ToString("dd/MM/yyyy")</td>
+                    <td>
+                        @if (vencida)
+                        {
+                            <span class="badge bg-danger">Vencida</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-success">@m.Estado</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a asp-controller="Dashboard" asp-action="RecepcionistaDashboard" class="btn btn-secondary">← Volver al Panel</a>
+</div>
