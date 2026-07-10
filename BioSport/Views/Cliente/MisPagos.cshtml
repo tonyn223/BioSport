@@ -1,0 +1,43 @@
+@model IEnumerable<BioSport.Models.Pago>
+@{
+    ViewData["Title"] = "Mis Pagos";
+}
+
+<div class="container mt-4">
+    <h1 class="text-success mb-4">Historial de Pagos</h1>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-warning">Aún no tienes pagos registrados.</div>
+    }
+    else
+    {
+        <table class="table table-striped shadow">
+            <thead class="table-dark">
+                <tr>
+                    <th>Fecha</th>
+                    <th>Plan</th>
+                    <th>Monto</th>
+                    <th>Método</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var pago in Model)
+                {
+                    <tr>
+                        <td>@pago.FechaPago.ToString("dd/MM/yyyy")</td>
+                        <td>@(pago.Membresia?.Plan?.Nombre ?? "N/A")</td>
+                        <td>₡@pago.Monto.ToString("N0")</td>
+                        <td>@pago.Metodo</td>
+                        <td>
+                            <span class="badge bg-success">@pago.Estado</span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    <a asp-controller="Dashboard" asp-action="ClienteDashboard" class="btn btn-secondary">← Volver al Panel</a>
+</div>

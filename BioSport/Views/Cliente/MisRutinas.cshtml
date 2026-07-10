@@ -1,0 +1,29 @@
+@model IEnumerable<BioSport.Models.RutinaAsignada>
+@{
+    ViewData["Title"] = "Mis Rutinas";
+}
+
+<div class="container mt-4">
+    <h1 class="text-success mb-4">Mis Rutinas Asignadas</h1>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-warning">Aún no tienes rutinas asignadas.</div>
+    }
+    else
+    {
+        @foreach (var item in Model)
+        {
+            <div class="card shadow mb-3 p-3">
+                <h5>@item.Rutina?.Nombre</h5>
+                <p>@item.Rutina?.Descripcion</p>
+                <small class="text-muted">
+                    Entrenador: @(item.Rutina?.Entrenador?.Nombre ?? "N/A") |
+                    Asignada el: @item.FechaAsignacion?.ToString("dd/MM/yyyy")
+                </small>
+            </div>
+        }
+    }
+
+    <a asp-controller="Dashboard" asp-action="ClienteDashboard" class="btn btn-secondary mt-3">← Volver al Panel</a>
+</div>

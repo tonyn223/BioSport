@@ -1,0 +1,39 @@
+@model IEnumerable<BioSport.Models.Progreso>
+@{
+    ViewData["Title"] = "Mi Progreso";
+}
+
+<div class="container mt-4">
+    <h1 class="text-success mb-4">Mi Progreso Físico</h1>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-warning">Tu entrenador aún no ha registrado tu progreso.</div>
+    }
+    else
+    {
+        <table class="table table-striped shadow">
+            <thead class="table-dark">
+                <tr>
+                    <th>Fecha</th>
+                    <th>Peso (kg)</th>
+                    <th>Observaciones</th>
+                    <th>Entrenador</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model)
+                {
+                    <tr>
+                        <td>@p.FechaRegistro?.ToString("dd/MM/yyyy")</td>
+                        <td>@p.Peso</td>
+                        <td>@p.Observaciones</td>
+                        <td>@(p.Entrenador?.Nombre ?? "N/A")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    <a asp-controller="Dashboard" asp-action="ClienteDashboard" class="btn btn-secondary">← Volver al Panel</a>
+</div>
