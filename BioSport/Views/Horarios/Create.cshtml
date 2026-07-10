@@ -1,0 +1,49 @@
+@model BioSport.Models.Horario
+@{
+    ViewData["Title"] = "Nuevo Horario";
+}
+
+<div class="container mt-4">
+    <h1 class="text-primary mb-4">Crear Nuevo Horario</h1>
+
+    <div class="card shadow p-4" style="max-width: 600px;">
+        <form asp-action="Create" method="post">
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger">
+                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                    {
+                        <p class="mb-0">@error.ErrorMessage</p>
+                    }
+                </div>
+            }
+
+            <div class="mb-3">
+                <label asp-for="DiaSemana" class="form-label">Día de la Semana</label>
+                <select asp-for="DiaSemana" class="form-control">
+                    <option value="">-- Selecciona --</option>
+                    <option value="Lunes">Lunes</option>
+                    <option value="Martes">Martes</option>
+                    <option value="Miércoles">Miércoles</option>
+                    <option value="Jueves">Jueves</option>
+                    <option value="Viernes">Viernes</option>
+                    <option value="Sábado">Sábado</option>
+                    <option value="Domingo">Domingo</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="HoraApertura" class="form-label">Hora de Apertura</label>
+                <input asp-for="HoraApertura" class="form-control" type="time" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="HoraCierre" class="form-label">Hora de Cierre</label>
+                <input asp-for="HoraCierre" class="form-control" type="time" />
+            </div>
+
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>

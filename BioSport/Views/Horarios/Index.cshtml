@@ -1,0 +1,43 @@
+@model IEnumerable<BioSport.Models.Horario>
+@{
+    ViewData["Title"] = "Gestionar Horarios";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-primary">Gestionar Horarios</h1>
+        <a asp-action="Create" class="btn btn-success">+ Nuevo Horario</a>
+    </div>
+
+    @if (TempData["Mensaje"] != null)
+    {
+        <div class="alert alert-success">@TempData["Mensaje"]</div>
+    }
+
+    <table class="table table-striped shadow">
+        <thead class="table-dark">
+            <tr>
+                <th>Día</th>
+                <th>Hora Apertura</th>
+                <th>Hora Cierre</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var horario in Model)
+            {
+                <tr>
+                    <td>@horario.DiaSemana</td>
+                    <td>@horario.HoraApertura.ToString(@"hh\:mm")</td>
+                    <td>@horario.HoraCierre.ToString(@"hh\:mm")</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@horario.IdHorario" class="btn btn-sm btn-warning">Editar</a>
+                        <a asp-action="Delete" asp-route-id="@horario.IdHorario" class="btn btn-sm btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a asp-controller="Dashboard" asp-action="AdminDashboard" class="btn btn-secondary">← Volver al Panel</a>
+</div>

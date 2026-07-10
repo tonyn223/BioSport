@@ -55,6 +55,22 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/tonyvargas/Downloads/BioSport/BioSport/Views/Horarios/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9yYXJpb3MvQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/tonyvargas/Downloads/BioSport/BioSport/Views/Horarios/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9yYXJpb3MvRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/tonyvargas/Downloads/BioSport/BioSport/Views/Horarios/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9yYXJpb3MvRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/tonyvargas/Downloads/BioSport/BioSport/Views/Horarios/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9yYXJpb3MvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/tonyvargas/Downloads/BioSport/BioSport/Views/Planes/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGxhbmVzL0NyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
