@@ -1,0 +1,26 @@
+@model BioSport.Models.Usuario
+@{
+    ViewData["Title"] = "Eliminar Usuario";
+}
+
+<div class="container mt-4">
+    <h1 class="text-danger mb-4">Eliminar Usuario</h1>
+
+    <div class="card shadow p-4" style="max-width: 600px;">
+        <p>¿Estás seguro que deseas eliminar este usuario?</p>
+        <dl class="row">
+            <dt class="col-sm-4">Nombre:</dt>
+            <dd class="col-sm-8">@Model.Nombre</dd>
+            <dt class="col-sm-4">Email:</dt>
+            <dd class="col-sm-8">@Model.Email</dd>
+            <dt class="col-sm-4">Rol:</dt>
+            <dd class="col-sm-8">@(Model.Rol?.NombreRol ?? "N/A")</dd>
+        </dl>
+
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="IdUsuario" />
+            <button type="submit" class="btn btn-danger">Confirmar Eliminación</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>

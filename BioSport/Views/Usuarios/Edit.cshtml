@@ -1,0 +1,61 @@
+@model BioSport.ViewModels.UsuarioViewModel
+@{
+    ViewData["Title"] = "Editar Usuario";
+    var roles = ViewBag.Roles as List<BioSport.Models.Rol>;
+}
+
+<div class="container mt-4">
+    <h1 class="text-primary mb-4">Editar Usuario</h1>
+
+    <div class="card shadow p-4" style="max-width: 600px;">
+        <form asp-action="Edit" method="post">
+            <input type="hidden" asp-for="IdUsuario" />
+
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger">
+                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                    {
+                        <p class="mb-0">@error.ErrorMessage</p>
+                    }
+                </div>
+            }
+
+            <div class="mb-3">
+                <label asp-for="Nombre" class="form-label">Nombre Completo</label>
+                <input asp-for="Nombre" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label">Correo Electrónico</label>
+                <input asp-for="Email" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Telefono" class="form-label">Teléfono</label>
+                <input asp-for="Telefono" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="IdRol" class="form-label">Rol</label>
+                <select asp-for="IdRol" class="form-control">
+                    @if (roles != null)
+                    {
+                        @foreach (var rol in roles)
+                        {
+                            <option value="@rol.IdRol">@rol.NombreRol</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label">Nueva Contraseña (opcional)</label>
+                <input asp-for="Password" class="form-control" type="password" placeholder="Dejar en blanco para no cambiar" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>

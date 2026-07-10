@@ -1,0 +1,49 @@
+@model IEnumerable<BioSport.Models.Usuario>
+@{
+    ViewData["Title"] = "Gestionar Usuarios";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-primary">Gestionar Usuarios</h1>
+        <a asp-action="Create" class="btn btn-success">+ Nuevo Usuario</a>
+    </div>
+
+    @if (TempData["Mensaje"] != null)
+    {
+        <div class="alert alert-success">@TempData["Mensaje"]</div>
+    }
+
+    <table class="table table-striped shadow">
+        <thead class="table-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Rol</th>
+                <th>Código Acceso</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var usuario in Model)
+            {
+                <tr>
+                    <td>@usuario.Nombre</td>
+                    <td>@usuario.Email</td>
+                    <td>@usuario.Telefono</td>
+                    <td>
+                        <span class="badge bg-info">@(usuario.Rol?.NombreRol ?? "N/A")</span>
+                    </td>
+                    <td>@usuario.CodigoAcceso</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@usuario.IdUsuario" class="btn btn-sm btn-warning">Editar</a>
+                        <a asp-action="Delete" asp-route-id="@usuario.IdUsuario" class="btn btn-sm btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a asp-controller="Dashboard" asp-action="AdminDashboard" class="btn btn-secondary">← Volver al Panel</a>
+</div>
