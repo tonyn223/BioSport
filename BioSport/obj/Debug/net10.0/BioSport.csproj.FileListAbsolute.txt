@@ -64,7 +64,6 @@
 /Users/tonyvargas/Downloads/BioSport/BioSport/obj/Debug/net10.0/scopedcss/Views/Shared/_Layout.cshtml.rz.scp.css
 /Users/tonyvargas/Downloads/BioSport/BioSport/obj/Debug/net10.0/scopedcss/bundle/BioSport.styles.css
 /Users/tonyvargas/Downloads/BioSport/BioSport/obj/Debug/net10.0/scopedcss/projectbundle/BioSport.bundle.scp.css
-/Users/tonyvargas/Downloads/BioSport/BioSport/obj/Debug/net10.0/compressed/eclvu6b5t3-{0}-b9sayid5wm-b9sayid5wm.gz
 /Users/tonyvargas/Downloads/BioSport/BioSport/obj/Debug/net10.0/compressed/me1hatbere-{0}-61n19gt1b8-61n19gt1b8.gz
 /Users/tonyvargas/Downloads/BioSport/BioSport/obj/Debug/net10.0/compressed/z0kirznboi-{0}-xtxxf3hu2r-xtxxf3hu2r.gz
 /Users/tonyvargas/Downloads/BioSport/BioSport/obj/Debug/net10.0/compressed/ws3bqpxosa-{0}-bqjiyaj88i-bqjiyaj88i.gz
@@ -141,3 +140,4 @@
 /Users/tonyvargas/Downloads/BioSport/BioSport/obj/Debug/net10.0/ref/BioSport.dll
 /Users/tonyvargas/Downloads/BioSport/BioSport/obj/Debug/net10.0/BioSport.sourcelink.json
 /Users/tonyvargas/Downloads/BioSport/BioSport/bin/Debug/net10.0/BCrypt-Net-Next.dll
+/Users/tonyvargas/Downloads/BioSport/BioSport/obj/Debug/net10.0/compressed/eclvu6b5t3-{0}-bdoeftf8p4-bdoeftf8p4.gz

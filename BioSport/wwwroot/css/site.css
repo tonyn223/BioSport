@@ -1,31 +1,334 @@
-html {
-  font-size: 14px;
+/* ===================================================
+   BIOSPORT — SISTEMA DE DISEÑO
+   Concepto: "Abre a las 5:00 AM"
+   =================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+:root {
+  --grafito: #211F1A;
+  --grafito-2: #2C2822;
+  --concreto: #E7E3D8;
+  --concreto-2: #F1EEE5;
+  --ambar: #E38B29;
+  --ambar-oscuro: #C06A1A;
+  --brasa: #C1442D;
+  --musgo: #55744A;
+  --hueso: #F3EFE6;
+  --radius: 4px;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
+/* ---------- Base ---------- */
 body {
-  margin-bottom: 60px;
+  font-family: 'Work Sans', sans-serif;
+  background-color: var(--concreto-2);
+  color: var(--grafito);
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+h1, h2, h3, h4, h5, h6,
+.display-1, .display-2, .display-3, .display-4 {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--grafito);
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+.font-mono, .hora-dato {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+a {
+  color: var(--ambar-oscuro);
+}
+a:hover {
+  color: var(--brasa);
+}
+
+/* ---------- Navbar ---------- */
+.navbar {
+  background-color: var(--grafito) !important;
+  border-bottom: 3px solid var(--ambar);
+}
+.navbar-brand {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 900;
+  font-size: 1.8rem;
+  color: var(--hueso) !important;
+  letter-spacing: 0.03em;
+}
+.navbar .nav-link {
+  color: var(--hueso) !important;
+  font-weight: 600;
+}
+.navbar .nav-link:hover {
+  color: var(--ambar) !important;
+}
+.navbar .btn-link {
+  color: var(--hueso) !important;
+}
+
+/* ---------- Botones ---------- */
+.btn {
+  border-radius: var(--radius);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: 0.9rem;
+  border-width: 2px;
+}
+
+.btn-primary {
+  background-color: var(--grafito);
+  border-color: var(--grafito);
+  color: var(--hueso);
+}
+.btn-primary:hover {
+  background-color: var(--ambar-oscuro);
+  border-color: var(--ambar-oscuro);
+  color: var(--hueso);
+}
+
+.btn-success {
+  background-color: var(--ambar);
+  border-color: var(--ambar);
+  color: var(--grafito);
+}
+.btn-success:hover {
+  background-color: var(--ambar-oscuro);
+  border-color: var(--ambar-oscuro);
+  color: var(--hueso);
+}
+
+.btn-danger {
+  background-color: var(--brasa);
+  border-color: var(--brasa);
+}
+.btn-danger:hover {
+  background-color: #a13723;
+  border-color: #a13723;
+}
+
+.btn-warning {
+  background-color: var(--ambar);
+  border-color: var(--ambar);
+  color: var(--grafito);
+}
+.btn-warning:hover {
+  background-color: var(--ambar-oscuro);
+  color: var(--hueso);
+}
+
+.btn-info {
+  background-color: var(--grafito-2);
+  border-color: var(--grafito-2);
+  color: var(--hueso);
+}
+.btn-info:hover {
+  background-color: var(--grafito);
+  color: var(--ambar);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border-color: var(--grafito);
+  color: var(--grafito);
+}
+.btn-secondary:hover {
+  background-color: var(--grafito);
+  color: var(--hueso);
+}
+
+.btn-outline-light {
+  border-color: var(--hueso);
+  color: var(--hueso);
+}
+.btn-outline-light:hover {
+  background-color: var(--hueso);
+  color: var(--grafito);
+}
+
+/* ---------- Texto y fondos de color ---------- */
+.text-primary { color: var(--grafito) !important; }
+.text-success { color: var(--ambar-oscuro) !important; }
+.text-danger  { color: var(--brasa) !important; }
+.text-warning { color: var(--ambar-oscuro) !important; }
+.text-info    { color: var(--grafito-2) !important; }
+
+.bg-success { background-color: var(--musgo) !important; }
+.bg-danger  { background-color: var(--brasa) !important; }
+.bg-info    { background-color: var(--grafito-2) !important; }
+
+/* ---------- Tarjetas ---------- */
+.card {
+  border: none;
+  border-radius: var(--radius);
+  border-top: 4px solid var(--ambar);
+}
+.card.shadow {
+  box-shadow: 0 4px 14px rgba(33, 31, 26, 0.12) !important;
+}
+
+/* ---------- Tablas ---------- */
+.table-dark {
+  --bs-table-bg: var(--grafito);
+  --bs-table-color: var(--hueso);
+}
+thead.table-dark th {
+  font-family: 'Big Shoulders Display', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+}
+
+/* ---------- Formularios ---------- */
+.form-control, .form-select {
+  border-radius: var(--radius);
+  border: 2px solid var(--concreto);
+}
+.form-control:focus, .form-select:focus {
+  border-color: var(--ambar);
+  box-shadow: 0 0 0 0.2rem rgba(227, 139, 41, 0.25);
+}
+
+/* ---------- Footer ---------- */
+footer {
+  background-color: var(--grafito);
+  color: var(--hueso);
+  border-top: 3px solid var(--ambar);
+}
+footer a {
+  color: var(--ambar);
+}
+
+/* ================================================
+   COMPONENTES DE LA LANDING PAGE
+   ================================================ */
+
+/* --- Hero con motivo "5:00 AM" --- */
+.hero-biosport {
+  position: relative;
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--hueso);
+  background-color: var(--grafito);
+}
+.hero-biosport::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(180deg, rgba(33,31,26,0.55) 0%, rgba(33,31,26,0.85) 100%),
+    var(--hero-img);
+  background-size: cover;
+  background-position: center;
+}
+.hero-biosport .hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+}
+.hero-hora {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.1rem;
+  letter-spacing: 0.15em;
+  color: var(--ambar);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.hero-biosport h1 {
+  font-size: clamp(3rem, 9vw, 6.5rem);
+  line-height: 0.95;
+  color: var(--hueso);
+  margin-bottom: 0.5rem;
+}
+.hero-biosport .hero-slogan {
+  font-family: 'Work Sans', sans-serif;
+  font-style: italic;
+  font-size: 1.4rem;
+  color: var(--concreto-2);
+}
+
+/* --- Letrero de horarios --- */
+.letrero-horarios {
+  background-color: var(--grafito);
+  border: 3px solid var(--ambar);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.letrero-horarios .fila-horario {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 1.5rem;
+  border-bottom: 1px solid rgba(243, 239, 230, 0.15);
+}
+.letrero-horarios .fila-horario:last-child {
+  border-bottom: none;
+}
+.letrero-horarios .dia {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--hueso);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.letrero-horarios .rango {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.05rem;
+  color: var(--ambar);
+}
+.letrero-horarios .fila-horario.hoy {
+  background-color: rgba(227, 139, 41, 0.12);
+}
+.letrero-horarios .fila-horario.hoy .dia::after {
+  content: " • HOY";
+  color: var(--ambar);
+  font-size: 0.7rem;
+  font-family: 'Work Sans', sans-serif;
+  letter-spacing: 0.05em;
+}
+
+/* --- Eyebrow (etiquetas de sección) --- */
+.eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ambar-oscuro);
+  margin-bottom: 0.5rem;
+  display: inline-block;
+}
+
+/* --- Tarjetas de planes --- */
+.plan-card {
+  border-top: none !important;
+  position: relative;
+  transition: transform 0.15s ease;
+}
+.plan-card:hover {
+  transform: translateY(-4px);
+}
+.plan-card .plan-precio {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--grafito);
+}
+
+/* --- Galería --- */
+.galeria-img {
+  height: 260px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: var(--radius);
+  filter: grayscale(15%);
+  transition: filter 0.2s ease;
+}
+.galeria-img:hover {
+  filter: grayscale(0%);
 }
