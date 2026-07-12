@@ -10,9 +10,14 @@
                 <div class="card-body p-5">
                     <h2 class="text-center mb-4 text-primary">BioSport - Iniciar Sesión</h2>
 
+                    @if (TempData["Mensaje"] != null)
+                    {
+                        <div class="alert alert-success">@TempData["Mensaje"]</div>
+                    }
+
                     <form asp-action="Login" method="post">
                         <input type="hidden" asp-for="@ViewData["ReturnUrl"]" name="returnUrl" />
-                        
+
                         <div asp-validation-summary="ModelOnly" class="alert alert-danger" style="display:none"></div>
                         @if (!ViewData.ModelState.IsValid)
                         {
@@ -41,6 +46,9 @@
 
                         <button type="submit" class="btn btn-primary w-100 mb-3">Iniciar Sesión</button>
 
+                        <p class="text-center mb-2">
+                            <a asp-action="OlvideContrasena">¿Olvidaste tu contraseña?</a>
+                        </p>
                         <p class="text-center">
                             ¿No tienes cuenta? Escríbenos por
                             <a href="https://wa.me/50685687154?text=Hola%2C%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n" target="_blank">WhatsApp</a>

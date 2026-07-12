@@ -1,0 +1,54 @@
+@model IEnumerable<BioSport.Models.Usuario>
+@{
+    ViewData["Title"] = "Consultar Cliente";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-primary">Consultar Cliente</h1>
+        <a asp-controller="Dashboard" asp-action="Index" class="btn btn-secondary">← Volver al Panel</a>
+    </div>
+
+    <p class="text-muted">
+        Busca a un cliente por nombre o correo para recordarle su correo y código de acceso
+        en caso de que los haya olvidado.
+    </p>
+
+    <form asp-action="ConsultarCliente" method="get" class="row g-2 mb-4">
+        <div class="col-md-8">
+            <input type="text" name="busqueda" value="@ViewBag.Busqueda" class="form-control form-control-lg"
+                   placeholder="Nombre o correo del cliente" />
+        </div>
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-primary btn-lg w-100">Buscar</button>
+        </div>
+    </form>
+
+    <table class="table table-striped shadow">
+        <thead class="table-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Código de Acceso</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cliente in Model)
+            {
+                <tr>
+                    <td>@cliente.Nombre</td>
+                    <td>@cliente.Email</td>
+                    <td>@(cliente.Telefono ?? "N/A")</td>
+                    <td><span class="texto-acento" style="font-size:1.3rem; display:inline-block;">@cliente.CodigoAcceso</span></td>
+                </tr>
+            }
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="4" class="text-center text-muted">No se encontraron clientes.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

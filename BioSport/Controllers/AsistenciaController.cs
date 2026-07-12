@@ -35,6 +35,24 @@ namespace BioSport.Controllers
             return View();
         }
 
+        // GET: /Asistencia/ConsultarCliente
+        public async Task<IActionResult> ConsultarCliente(string? busqueda)
+        {
+            var query = _context.Usuarios.Where(u => u.IdRol == 4); // Cliente
+
+            if (!string.IsNullOrWhiteSpace(busqueda))
+            {
+                query = query.Where(u => u.Nombre.Contains(busqueda) || u.Email.Contains(busqueda));
+            }
+
+            var clientes = await query
+                .OrderBy(u => u.Nombre)
+                .ToListAsync();
+
+            ViewBag.Busqueda = busqueda;
+            return View(clientes);
+        }
+
         // POST: /Asistencia/Registrar
         [HttpPost]
         [ValidateAntiForgeryToken]

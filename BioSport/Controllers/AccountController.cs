@@ -58,6 +58,38 @@ namespace BioSport.Controllers
             return RedirectToAction("Index", "Dashboard");
         }
 
+        // GET: /Account/OlvideContrasena
+        public IActionResult OlvideContrasena()
+        {
+            return View();
+        }
+
+        // POST: /Account/OlvideContrasena
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> OlvideContrasena(OlvidoContrasenaViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var usuario = await _context.Usuarios
+                .FirstOrDefaultAsync(u => u.Email == model.Email && u.CodigoAcceso == model.CodigoAcceso);
+
+            if (usuario == null)
+            {
+                ModelState.AddModelError(string.Empty, "El correo y el código de acceso no coinciden con ningún usuario.");
+                return View(model);
+            }
+
+            usuario.Contrasena = BCrypt.Net.BCrypt.HashPassword(model.NuevaContrasena);
+            await _context.SaveChangesAsync();
+
+            TempData["Mensaje"] = "Tu contraseña se actualizó correctamente. Ya puedes iniciar sesión.";
+            return RedirectToAction(nameof(Login));
+        }
+
         // POST: /Account/Logout
         [HttpPost]
         [ValidateAntiForgeryToken]
