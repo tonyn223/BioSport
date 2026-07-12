@@ -64,6 +64,41 @@
     </div>
 </div>
 
+@{
+    var promociones = ViewBag.Promociones as List<BioSport.Models.Promocion>;
+}
+@if (promociones != null && promociones.Any())
+{
+    <!-- PROMOCIONES -->
+    <div style="background-color: var(--concreto);" class="py-5">
+        <div class="container">
+            <span class="eyebrow">Por tiempo limitado</span>
+            <h2 class="mb-4 texto-acento">Promociones Activas</h2>
+            <div class="row">
+                @foreach (var promo in promociones)
+                {
+                    <div class="col-md-4 mb-4">
+                        <div class="card shadow plan-card h-100">
+                            <div class="card-body d-flex flex-column">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h4 class="mb-0">@promo.Nombre</h4>
+                                    @if (promo.DescuentoPorcentaje != null)
+                                    {
+                                        <span class="badge bg-danger">-@promo.DescuentoPorcentaje%</span>
+                                    }
+                                </div>
+                                <p class="flex-grow-1">@promo.Descripcion</p>
+                                <p class="text-muted font-mono mb-3">Válida hasta @promo.FechaFin.ToString("dd/MM/yyyy")</p>
+                                <a href="https://wa.me/50685687154?text=Hola%2C%20me%20interesa%20la%20promoci%C3%B3n%20@promo.Nombre" target="_blank" class="btn btn-success mt-auto">Consultar</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+
 <!-- PLANES -->
 <div class="container py-5">
     <span class="eyebrow">Membresías</span>
@@ -153,6 +188,12 @@
                     <strong>Facebook:</strong>
                     <a href="https://www.facebook.com/p/Gimnasio-Bio-Sport-100050566386030/?locale=es_LA" target="_blank">
                         Gimnasio Bio Sport
+                    </a>
+                </li>
+                <li class="mb-3">
+                    <strong>Instagram:</strong>
+                    <a href="https://www.instagram.com/gimnasiobiosportmoravia/" target="_blank">
+                        @@gimnasiobiosportmoravia
                     </a>
                 </li>
             </ul>

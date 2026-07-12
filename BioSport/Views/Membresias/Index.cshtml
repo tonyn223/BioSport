@@ -9,12 +9,9 @@
         <a asp-action="Crear" class="btn btn-success">+ Nueva Membresía / Pago</a>
     </div>
 
-    @if (TempData["Mensaje"] != null)
-    {
-        <div class="alert alert-success">@TempData["Mensaje"]</div>
-    }
 
-    <table class="table table-striped shadow">
+    <div class="table-responsive">
+        <table class="table table-striped shadow">
         <thead class="table-dark">
             <tr>
                 <th>Cliente</th>
@@ -47,6 +44,7 @@
             }
         </tbody>
     </table>
+    </div>
 
     <a asp-controller="Dashboard" asp-action="RecepcionistaDashboard" class="btn btn-secondary">← Volver al Panel</a>
 </div>

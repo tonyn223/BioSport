@@ -1,0 +1,54 @@
+@model BioSport.ViewModels.SetupAdminViewModel
+@{
+    ViewData["Title"] = "Configuración Inicial";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body p-5">
+                    <h2 class="text-center mb-3 text-primary">Configuración Inicial</h2>
+                    <p class="text-muted text-center mb-4">
+                        No existe ningún administrador todavía. Crea la primera cuenta de administrador
+                        para empezar a usar BioSport.
+                    </p>
+
+                    <form asp-action="Index" method="post">
+                        @if (!ViewData.ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger">
+                                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                                {
+                                    <p class="mb-0">@error.ErrorMessage</p>
+                                }
+                            </div>
+                        }
+
+                        <div class="mb-3">
+                            <label asp-for="Nombre" class="form-label">Nombre Completo</label>
+                            <input asp-for="Nombre" class="form-control" placeholder="Tu nombre" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label">Correo Electrónico</label>
+                            <input asp-for="Email" class="form-control" placeholder="tu@correo.com" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Password" class="form-label">Contraseña</label>
+                            <input asp-for="Password" class="form-control" placeholder="Contraseña" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ConfirmarPassword" class="form-label">Confirmar Contraseña</label>
+                            <input asp-for="ConfirmarPassword" class="form-control" placeholder="Repite la contraseña" />
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Crear Cuenta de Administrador</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+@model BioSport.ViewModels.CambiarContrasenaViewModel
+@{
+    ViewData["Title"] = "Cambiar Contraseña";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body p-5">
+                    <h2 class="text-center mb-4 text-primary">Cambiar Contraseña</h2>
+
+                    <form asp-action="CambiarContrasena" method="post">
+                        @if (!ViewData.ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger">
+                                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                                {
+                                    <p class="mb-0">@error.ErrorMessage</p>
+                                }
+                            </div>
+                        }
+
+                        <div class="mb-3">
+                            <label asp-for="ContrasenaActual" class="form-label">Contraseña Actual</label>
+                            <input asp-for="ContrasenaActual" class="form-control" placeholder="Tu contraseña actual" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="NuevaContrasena" class="form-label">Nueva Contraseña</label>
+                            <input asp-for="NuevaContrasena" class="form-control" placeholder="Nueva contraseña" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ConfirmarContrasena" class="form-label">Confirmar Nueva Contraseña</label>
+                            <input asp-for="ConfirmarContrasena" class="form-control" placeholder="Repite la nueva contraseña" />
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 mb-3">Actualizar Contraseña</button>
+
+                        <p class="text-center mb-0">
+                            <a asp-controller="Dashboard" asp-action="Index">← Volver al Panel</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

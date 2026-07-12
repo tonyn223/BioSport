@@ -9,12 +9,9 @@
         <a asp-action="Create" class="btn btn-success">+ Nuevo Horario</a>
     </div>
 
-    @if (TempData["Mensaje"] != null)
-    {
-        <div class="alert alert-success">@TempData["Mensaje"]</div>
-    }
 
-    <table class="table table-striped shadow">
+    <div class="table-responsive">
+        <table class="table table-striped shadow">
         <thead class="table-dark">
             <tr>
                 <th>Día</th>
@@ -38,6 +35,7 @@
             }
         </tbody>
     </table>
+    </div>
 
     <a asp-controller="Dashboard" asp-action="AdminDashboard" class="btn btn-secondary">← Volver al Panel</a>
 </div>

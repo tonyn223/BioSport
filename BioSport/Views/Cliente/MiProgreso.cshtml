@@ -12,7 +12,8 @@
     }
     else
     {
-        <table class="table table-striped shadow">
+        <div class="table-responsive">
+            <table class="table table-striped shadow">
             <thead class="table-dark">
                 <tr>
                     <th>Fecha</th>
@@ -33,6 +34,7 @@
                 }
             </tbody>
         </table>
+        </div>
     }
 
     <a asp-controller="Dashboard" asp-action="ClienteDashboard" class="btn btn-secondary">← Volver al Panel</a>

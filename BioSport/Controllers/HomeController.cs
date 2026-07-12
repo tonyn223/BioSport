@@ -19,8 +19,15 @@ namespace BioSport.Controllers
             var horarios = await _context.Horarios.ToListAsync();
             var planes = await _context.Planes.ToListAsync();
 
+            var hoy = DateTime.Today;
+            var promociones = await _context.Promociones
+                .Where(p => p.Estado == "Activo" && p.FechaInicio <= hoy && p.FechaFin >= hoy)
+                .OrderBy(p => p.FechaFin)
+                .ToListAsync();
+
             ViewBag.Horarios = horarios;
             ViewBag.Planes = planes;
+            ViewBag.Promociones = promociones;
 
             return View();
         }

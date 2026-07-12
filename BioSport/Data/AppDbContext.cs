@@ -84,6 +84,12 @@ namespace BioSport.Data
                 .HasOne(a => a.Usuario)
                 .WithMany()
                 .HasForeignKey(a => a.IdUsuario);
+
+            // Precisión de columnas decimales (evita truncamientos silenciosos)
+            modelBuilder.Entity<Pago>().Property(p => p.Monto).HasPrecision(10, 2);
+            modelBuilder.Entity<Plan>().Property(p => p.Precio).HasPrecision(10, 2);
+            modelBuilder.Entity<Progreso>().Property(p => p.Peso).HasPrecision(5, 2);
+            modelBuilder.Entity<Promocion>().Property(p => p.DescuentoPorcentaje).HasPrecision(5, 2);
         }
     }
 }

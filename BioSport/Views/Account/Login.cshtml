@@ -8,12 +8,7 @@
         <div class="col-md-6">
             <div class="card shadow">
                 <div class="card-body p-5">
-                    <h2 class="text-center mb-4 text-primary">BioSport - Iniciar Sesión</h2>
-
-                    @if (TempData["Mensaje"] != null)
-                    {
-                        <div class="alert alert-success">@TempData["Mensaje"]</div>
-                    }
+                    <h2 class="text-center mb-4 text-primary">Iniciar Sesión</h2>
 
                     <form asp-action="Login" method="post">
                         <input type="hidden" asp-for="@ViewData["ReturnUrl"]" name="returnUrl" />

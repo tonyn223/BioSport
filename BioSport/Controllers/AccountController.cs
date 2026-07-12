@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
@@ -88,6 +89,40 @@ namespace BioSport.Controllers
 
             TempData["Mensaje"] = "Tu contraseña se actualizó correctamente. Ya puedes iniciar sesión.";
             return RedirectToAction(nameof(Login));
+        }
+
+        // GET: /Account/CambiarContrasena
+        [Authorize]
+        public IActionResult CambiarContrasena()
+        {
+            return View();
+        }
+
+        // POST: /Account/CambiarContrasena
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CambiarContrasena(CambiarContrasenaViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var idUsuario = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var usuario = await _context.Usuarios.FindAsync(idUsuario);
+
+            if (usuario == null || !BCrypt.Net.BCrypt.Verify(model.ContrasenaActual, usuario.Contrasena))
+            {
+                ModelState.AddModelError(nameof(model.ContrasenaActual), "La contraseña actual es incorrecta.");
+                return View(model);
+            }
+
+            usuario.Contrasena = BCrypt.Net.BCrypt.HashPassword(model.NuevaContrasena);
+            await _context.SaveChangesAsync();
+
+            TempData["Mensaje"] = "Tu contraseña se actualizó correctamente.";
+            return RedirectToAction(nameof(CambiarContrasena));
         }
 
         // POST: /Account/Logout

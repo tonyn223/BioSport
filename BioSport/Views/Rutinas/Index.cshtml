@@ -7,11 +7,8 @@
         <h1 class="text-warning">Mis Rutinas</h1>
         <a asp-action="Create" class="btn btn-success">+ Nueva Rutina</a>
     </div>
-    @if (TempData["Mensaje"] != null)
-    {
-        <div class="alert alert-success">@TempData["Mensaje"]</div>
-    }
-    <table class="table table-striped shadow">
+    <div class="table-responsive">
+        <table class="table table-striped shadow">
         <thead class="table-dark">
             <tr>
                 <th>Nombre</th>
@@ -36,6 +33,7 @@
             }
         </tbody>
     </table>
+    </div>
     <a asp-action="MisClientes" class="btn btn-info">Ver Clientes Asignados</a>
     <a asp-controller="Dashboard" asp-action="EntrenadorDashboard" class="btn btn-secondary">← Volver al Panel</a>
 </div>

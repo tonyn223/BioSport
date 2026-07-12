@@ -9,12 +9,9 @@
         <a asp-action="Create" class="btn btn-success">+ Registrar Progreso</a>
     </div>
 
-    @if (TempData["Mensaje"] != null)
-    {
-        <div class="alert alert-success">@TempData["Mensaje"]</div>
-    }
 
-    <table class="table table-striped shadow">
+    <div class="table-responsive">
+        <table class="table table-striped shadow">
         <thead class="table-dark">
             <tr>
                 <th>Cliente</th>
@@ -35,6 +32,7 @@
             }
         </tbody>
     </table>
+    </div>
 
     <a asp-controller="Dashboard" asp-action="EntrenadorDashboard" class="btn btn-secondary">← Volver al Panel</a>
 </div>

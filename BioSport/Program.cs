@@ -39,3 +39,6 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+// Marcador para que WebApplicationFactory<Program> pueda usarse en pruebas de integración.
+public partial class Program { }

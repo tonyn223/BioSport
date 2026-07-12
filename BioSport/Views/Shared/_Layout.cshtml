@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - BioSport</title>
+    <link rel="icon" type="image/png" href="~/images/logo-transparente.png" />
     <script>
         (function () {
             var guardado = localStorage.getItem('biosport-theme');
@@ -18,7 +19,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-dark mb-3">
             <div class="container-fluid position-relative">
-                <a class="navbar-brand position-absolute top-50 start-50 translate-middle" asp-controller="Home" asp-action="Index">
+                <a class="navbar-brand navbar-brand-center" asp-controller="Home" asp-action="Index">
                     <img src="~/images/logo-transparente.png" alt="BioSport" class="navbar-logo-img" />
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -34,15 +35,20 @@
                     <ul class="navbar-nav align-items-sm-center">
                         @if (User.Identity != null && User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Dashboard" asp-action="Index">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     @User.Identity.Name
                                 </a>
-                            </li>
-                            <li class="nav-item">
-                                <form asp-controller="Account" asp-action="Logout" method="post" style="display:inline;">
-                                    <button type="submit" class="btn btn-link nav-link">Cerrar Sesión</button>
-                                </form>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" asp-controller="Dashboard" asp-action="Index">Mi Panel</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Account" asp-action="CambiarContrasena">Cambiar Contraseña</a></li>
+                                    <li><hr class="dropdown-divider" /></li>
+                                    <li>
+                                        <form asp-controller="Account" asp-action="Logout" method="post">
+                                            <button type="submit" class="dropdown-item">Cerrar Sesión</button>
+                                        </form>
+                                    </li>
+                                </ul>
                             </li>
                         }
                         else
@@ -67,6 +73,27 @@
             </div>
         </nav>
     </header>
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1080;">
+        @if (TempData["Mensaje"] != null)
+        {
+            <div class="toast align-items-center text-bg-success border-0 toast-biosport" role="alert">
+                <div class="d-flex">
+                    <div class="toast-body">@TempData["Mensaje"]</div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                </div>
+            </div>
+        }
+        @if (TempData["Error"] != null)
+        {
+            <div class="toast align-items-center text-bg-danger border-0 toast-biosport" role="alert">
+                <div class="d-flex">
+                    <div class="toast-body">@TempData["Error"]</div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                </div>
+            </div>
+        }
+    </div>
+
     <div class="container-fluid px-0">
         <main role="main" class="pb-3">
             @RenderBody()
