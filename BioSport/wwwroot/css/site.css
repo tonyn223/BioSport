@@ -3,7 +3,7 @@
    Concepto: "Abre a las 5:00 AM"
    =================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&family=Anton&display=swap');
 
 :root {
   --grafito: #211F1A;
@@ -11,31 +11,70 @@
   --concreto: #E7E3D8;
   --concreto-2: #F1EEE5;
   --ambar: #E38B29;
+  --ambar-claro: #F0B15C;
   --ambar-oscuro: #C06A1A;
   --brasa: #C1442D;
+  --brasa-profunda: #7A2A1E;
   --musgo: #55744A;
   --hueso: #F3EFE6;
   --radius: 4px;
+  --gradiente-biosport: linear-gradient(120deg, var(--brasa-profunda) 0%, var(--brasa) 40%, var(--ambar) 75%, var(--ambar-claro) 100%);
+
+  /* Superficie/texto de página: independientes del --grafito de marca (navbar/footer/hero se mantienen oscuros siempre) */
+  --texto-pagina: var(--grafito);
+  --texto-pagina-suave: #55503F;
+  --fondo-pagina: var(--concreto-2);
+}
+
+[data-bs-theme="dark"] {
+  --texto-pagina: var(--hueso);
+  --texto-pagina-suave: #C7C0B0;
+  --fondo-pagina: #15130E;
+  --concreto: #221F19;
 }
 
 /* ---------- Base ---------- */
 body {
-  font-family: 'Work Sans', sans-serif;
-  background-color: var(--concreto-2);
-  color: var(--grafito);
+  font-family: 'Inter', sans-serif;
+  background-color: var(--fondo-pagina);
+  color: var(--texto-pagina);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 h1, h2, h3, h4, h5, h6,
 .display-1, .display-2, .display-3, .display-4 {
-  font-family: 'Big Shoulders Display', sans-serif;
-  font-weight: 900;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--texto-pagina);
+}
+
+h1, .display-1, .display-2 {
   text-transform: uppercase;
+  font-weight: 700;
   letter-spacing: 0.02em;
-  color: var(--grafito);
 }
 
 .font-mono, .hora-dato {
   font-family: 'IBM Plex Mono', monospace;
+}
+
+/* --- Texto de acento: para títulos destacados, cifras y datos especiales --- */
+.texto-acento {
+  font-family: 'Anton', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  transform: skewX(-10deg);
+  background: var(--gradiente-biosport);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-muted {
+  color: var(--texto-pagina-suave) !important;
 }
 
 a {
@@ -44,25 +83,95 @@ a {
 a:hover {
   color: var(--brasa);
 }
+:where([data-bs-theme="dark"]) a {
+  color: var(--ambar);
+}
+:where([data-bs-theme="dark"]) a:hover {
+  color: var(--ambar-claro);
+}
 
 /* ---------- Navbar ---------- */
 .navbar {
   background-color: var(--grafito) !important;
-  border-bottom: 3px solid var(--ambar);
+  border-bottom: 3px solid transparent;
+  border-image: var(--gradiente-biosport) 1;
 }
 .navbar-brand {
-  font-family: 'Big Shoulders Display', sans-serif;
-  font-weight: 900;
-  font-size: 1.8rem;
-  color: var(--hueso) !important;
-  letter-spacing: 0.03em;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+.navbar-logo-img {
+  height: 52px;
+  width: auto;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
+  transition: transform 0.2s ease;
+}
+.navbar-brand:hover .navbar-logo-img {
+  transform: scale(1.04);
+}
+.footer-logo-img {
+  height: 34px;
+  width: auto;
+  vertical-align: middle;
+  margin-right: 0.6rem;
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.35));
+}
+.theme-toggle-btn {
+  background: transparent;
+  border: 1.5px solid rgba(243, 239, 230, 0.3);
+  color: var(--hueso);
+  border-radius: 999px;
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.theme-toggle-btn:hover {
+  border-color: var(--ambar);
+  color: var(--ambar);
+  transform: scale(1.06);
+}
+.theme-toggle-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+}
+html[data-bs-theme="light"] .theme-toggle-btn .icon-sun,
+html[data-bs-theme="dark"] .theme-toggle-btn .icon-moon {
+  display: none;
 }
 .navbar .nav-link {
   color: var(--hueso) !important;
+  font-family: 'Poppins', sans-serif;
   font-weight: 600;
+  font-size: 0.85rem;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.6rem 0.15rem !important;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.navbar .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: 0.2rem;
+  height: 2px;
+  background: var(--gradiente-biosport);
+  transition: right 0.25s ease;
 }
 .navbar .nav-link:hover {
   color: var(--ambar) !important;
+}
+.navbar .nav-link:hover::after {
+  right: 0;
 }
 .navbar .btn-link {
   color: var(--hueso) !important;
@@ -149,7 +258,7 @@ a:hover {
 }
 
 /* ---------- Texto y fondos de color ---------- */
-.text-primary { color: var(--grafito) !important; }
+.text-primary { color: var(--texto-pagina) !important; }
 .text-success { color: var(--ambar-oscuro) !important; }
 .text-danger  { color: var(--brasa) !important; }
 .text-warning { color: var(--ambar-oscuro) !important; }
@@ -158,6 +267,10 @@ a:hover {
 .bg-success { background-color: var(--musgo) !important; }
 .bg-danger  { background-color: var(--brasa) !important; }
 .bg-info    { background-color: var(--grafito-2) !important; }
+
+[data-bs-theme="dark"] .text-success { color: var(--ambar) !important; }
+[data-bs-theme="dark"] .text-warning { color: var(--ambar) !important; }
+[data-bs-theme="dark"] .text-info    { color: var(--hueso) !important; }
 
 /* ---------- Tarjetas ---------- */
 .card {
@@ -175,7 +288,7 @@ a:hover {
   --bs-table-color: var(--hueso);
 }
 thead.table-dark th {
-  font-family: 'Big Shoulders Display', sans-serif;
+  font-family: 'Poppins', sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-weight: 700;
@@ -221,10 +334,19 @@ footer a {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(180deg, rgba(33,31,26,0.55) 0%, rgba(33,31,26,0.85) 100%),
+    linear-gradient(165deg, rgba(122,42,30,0.5) 0%, rgba(33,31,26,0.88) 65%),
     var(--hero-img);
   background-size: cover;
   background-position: center;
+}
+.hero-biosport::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--brasa-profunda), var(--brasa), var(--ambar), var(--ambar-claro));
+  opacity: 0.9;
+  height: 4px;
+  top: auto;
 }
 .hero-biosport .hero-content {
   position: relative;
@@ -246,7 +368,7 @@ footer a {
   margin-bottom: 0.5rem;
 }
 .hero-biosport .hero-slogan {
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-style: italic;
   font-size: 1.4rem;
   color: var(--concreto-2);
@@ -270,7 +392,7 @@ footer a {
   border-bottom: none;
 }
 .letrero-horarios .dia {
-  font-family: 'Big Shoulders Display', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 1.15rem;
   color: var(--hueso);
@@ -289,7 +411,7 @@ footer a {
   content: " • HOY";
   color: var(--ambar);
   font-size: 0.7rem;
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   letter-spacing: 0.05em;
 }
 
@@ -299,9 +421,22 @@ footer a {
   font-size: 0.85rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--ambar-oscuro);
+  color: var(--brasa);
   margin-bottom: 0.5rem;
   display: inline-block;
+  position: relative;
+  padding-left: 1.4rem;
+}
+.eyebrow::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1rem;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--gradiente-biosport);
 }
 
 /* --- Tarjetas de planes --- */
@@ -314,21 +449,101 @@ footer a {
   transform: translateY(-4px);
 }
 .plan-card .plan-precio {
-  font-family: 'Big Shoulders Display', sans-serif;
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: var(--grafito);
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(1.6rem, 5vw, 2.3rem);
+  font-weight: 700;
+  white-space: nowrap;
+  background: var(--gradiente-biosport);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.plan-card {
+  border-top: 4px solid var(--brasa-profunda) !important;
+  border-image: var(--gradiente-biosport) 1;
 }
 
-/* --- Galería --- */
-.galeria-img {
-  height: 260px;
-  width: 100%;
-  object-fit: cover;
-  border-radius: var(--radius);
-  filter: grayscale(15%);
-  transition: filter 0.2s ease;
+/* --- Panel "Sobre nosotros" (foto real de fondo, sin marco) --- */
+.about-panel {
+  position: relative;
+  min-height: 420px;
+  border-radius: 12px 48px 12px 48px;
+  background-image: var(--img);
+  background-size: cover;
+  background-position: center 35%;
+  box-shadow: 0 20px 44px rgba(33, 31, 26, 0.24);
 }
-.galeria-img:hover {
-  filter: grayscale(0%);
+
+/* --- Fotos grandes de instalaciones (completas, sin recorte, sin marco) --- */
+.foto-instalacion-label {
+  font-family: 'IBM Plex Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  color: var(--texto-pagina-suave);
+  margin-bottom: 0.7rem;
+}
+.foto-instalacion {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 14px;
+  box-shadow: 0 16px 34px rgba(33, 31, 26, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.foto-instalacion:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 40px rgba(33, 31, 26, 0.28);
+}
+
+/* --- Sección con marca de agua del logo --- */
+.seccion-marca {
+  position: relative;
+  overflow: hidden;
+}
+.seccion-marca .container {
+  position: relative;
+  z-index: 1;
+}
+.marca-agua {
+  position: absolute;
+  top: -12%;
+  right: -4%;
+  width: 460px;
+  max-width: 48vw;
+  height: auto;
+  opacity: 0.07;
+  transform: rotate(-6deg);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+[data-bs-theme="dark"] .marca-agua {
+  opacity: 0.1;
+}
+
+/* ================================================
+   MODO OSCURO — ajustes finos de componentes propios
+   (navbar, footer, hero y letrero de horarios ya son
+   oscuros por diseño en ambos temas, no requieren cambio)
+   ================================================ */
+[data-bs-theme="dark"] .form-control,
+[data-bs-theme="dark"] .form-select {
+  border-color: rgba(243, 239, 230, 0.18);
+}
+[data-bs-theme="dark"] .eyebrow {
+  color: var(--ambar);
+}
+[data-bs-theme="dark"] .btn-secondary {
+  border-color: var(--hueso);
+  color: var(--hueso);
+}
+[data-bs-theme="dark"] .btn-secondary:hover {
+  background-color: var(--hueso);
+  color: var(--grafito);
+}
+[data-bs-theme="dark"] .about-panel,
+[data-bs-theme="dark"] .foto-instalacion,
+[data-bs-theme="dark"] .galeria-img {
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.5);
 }

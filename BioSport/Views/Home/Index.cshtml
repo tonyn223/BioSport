@@ -11,13 +11,13 @@
 }
 
 <!-- HERO -->
-<div class="hero-biosport" style="--hero-img: url('https://lh3.googleusercontent.com/gps-cs-s/AHRPTWnvs97Wb4WHyPLBwTHYWQ2TAOb7O7rLDjUTGNQtFZXjsOHNYgVNyTQQ0bbIeordRA-NQhjdvfQmn--2PGmxYcqda3udHzbnOQxqlwSEVpHnA-B1NMY6opmmJjo2L5XbSdwTI67A=s1360-w1360-h1020-rw');">
+<div class="hero-biosport" style="--hero-img: url('@Url.Content("~/images/interior-panoramica.jpeg")');">
     <div class="hero-content">
         <div class="hero-hora">Abrimos a las 5:00 a.m. — todos los días</div>
         <h1>NUNCA ES<br />TARDE</h1>
         <p class="hero-slogan">"En nuestro gimnasio, somos una familia."</p>
         <div class="mt-4">
-            <a asp-controller="Account" asp-action="Register" class="btn btn-success btn-lg me-2">Únete Ahora</a>
+            <a href="https://wa.me/50685687154?text=Hola%2C%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n" target="_blank" class="btn btn-success btn-lg me-2">Únete Ahora</a>
             <a href="#horarios" class="btn btn-outline-light btn-lg">Ver Horarios</a>
         </div>
     </div>
@@ -28,7 +28,7 @@
     <div class="row align-items-center">
         <div class="col-md-6">
             <span class="eyebrow">Quiénes somos</span>
-            <h2 class="mb-3">BioSport Gym</h2>
+            <h2 class="mb-3 texto-acento">BioSport Gym</h2>
             <p class="fs-5">
                 Creemos que cada persona merece la oportunidad de mejorar su calidad de vida,
                 sin importar el punto de partida. Contamos con <strong>máquinas de todo tipo</strong> y un equipo
@@ -39,38 +39,35 @@
             </p>
         </div>
         <div class="col-md-6">
-            <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWkgh8hUP3RadxgbBYDNXu3dUuUz5PrdFhpsYh3C8_5fL-7aoc-PEScN3jpY62TS-kvvisgVihPlSimBqNSLh_DX-MBbmj02vxgUFTlWFYK42fnbuI74xbsNQrxwgV-j2YK9G8l2=s1360-w1360-h1020-rw"
-                 class="galeria-img" style="height:340px;" alt="Interior del gimnasio BioSport" />
+            <div class="about-panel"
+                 style="--img: url('@Url.Content("~/images/interior-pesas.jpeg")');"
+                 role="img" aria-label="Interior del gimnasio BioSport">
+            </div>
         </div>
     </div>
 </div>
 
 <!-- GALERÍA -->
-<div style="background-color: var(--concreto);" class="py-5">
+<div style="background-color: var(--concreto);" class="py-5 seccion-marca">
+    <img src="~/images/logo-transparente.png" alt="" class="marca-agua" aria-hidden="true" />
     <div class="container">
         <span class="eyebrow">Instalaciones</span>
-        <h2 class="mb-4">Así se entrena en BioSport</h2>
-        <div class="row g-3">
-            <div class="col-md-4">
-                <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWnvs97Wb4WHyPLBwTHYWQ2TAOb7O7rLDjUTGNQtFZXjsOHNYgVNyTQQ0bbIeordRA-NQhjdvfQmn--2PGmxYcqda3udHzbnOQxqlwSEVpHnA-B1NMY6opmmJjo2L5XbSdwTI67A=s1360-w1360-h1020-rw"
-                     class="galeria-img" alt="Área de entrenamiento 1" />
-            </div>
-            <div class="col-md-4">
-                <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWkgh8hUP3RadxgbBYDNXu3dUuUz5PrdFhpsYh3C8_5fL-7aoc-PEScN3jpY62TS-kvvisgVihPlSimBqNSLh_DX-MBbmj02vxgUFTlWFYK42fnbuI74xbsNQrxwgV-j2YK9G8l2=s1360-w1360-h1020-rw"
-                     class="galeria-img" alt="Área de entrenamiento 2" />
-            </div>
-            <div class="col-md-4">
-                <img src="https://scontent.fsyq2-1.fna.fbcdn.net/v/t39.30808-6/612026024_1480516843643848_8573195569905798367_n.jpg?stp=dst-jpg_tt6&cstp=mx1080x1080&ctp=s1080x1080&_nc_cat=111&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=sD96sxVee4UQ7kNvwH3lepS&_nc_oc=Adrm27XN-9PvKzPN4y090Ratk2PxAgpgqCP9BPSyn_Ub0s4YeToSPEXQpcvGZdAuTc8&_nc_zt=23&_nc_ht=scontent.fsyq2-1.fna&_nc_gid=j9PV1EY2WQFaw5Z6-Fwp7A&_nc_ss=7b2a8&oh=00_AQDtlIHp3dVFGRXb8YdvexBUY8GgSzJUjMvPFTDCinkjYQ&oe=6A564DB0"
-                     class="galeria-img" alt="Área de entrenamiento 3" />
-            </div>
-        </div>
+        <h2 class="mb-4 texto-acento">Así se entrena en BioSport</h2>
+
+        <p class="foto-instalacion-label">Zona de pesas y máquinas</p>
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWnvs97Wb4WHyPLBwTHYWQ2TAOb7O7rLDjUTGNQtFZXjsOHNYgVNyTQQ0bbIeordRA-NQhjdvfQmn--2PGmxYcqda3udHzbnOQxqlwSEVpHnA-B1NMY6opmmJjo2L5XbSdwTI67A=s1360-w1360-h1020-rw"
+             class="foto-instalacion mb-5" alt="Zona de pesas del gimnasio BioSport" loading="lazy" />
+
+        <p class="foto-instalacion-label">Área de máquinas y cardio</p>
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWkgh8hUP3RadxgbBYDNXu3dUuUz5PrdFhpsYh3C8_5fL-7aoc-PEScN3jpY62TS-kvvisgVihPlSimBqNSLh_DX-MBbmj02vxgUFTlWFYK42fnbuI74xbsNQrxwgV-j2YK9G8l2=s1360-w1360-h1020-rw"
+             class="foto-instalacion" alt="Área de máquinas del gimnasio BioSport" loading="lazy" />
     </div>
 </div>
 
 <!-- PLANES -->
 <div class="container py-5">
     <span class="eyebrow">Membresías</span>
-    <h2 class="mb-4">Nuestros Planes</h2>
+    <h2 class="mb-4 texto-acento">Nuestros Planes</h2>
     <div class="row">
         @if (planes != null)
         {
@@ -83,7 +80,7 @@
                             <div class="plan-precio">₡@plan.Precio.ToString("N0")</div>
                             <p class="text-muted font-mono">@plan.DuracionDias días</p>
                             <p class="flex-grow-1">@plan.Descripcion</p>
-                            <a asp-controller="Account" asp-action="Register" class="btn btn-success mt-auto">Adquirir Plan</a>
+                            <a href="https://wa.me/50685687154?text=Hola%2C%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n" target="_blank" class="btn btn-success mt-auto">Adquirir Plan</a>
                         </div>
                     </div>
                 </div>
@@ -128,7 +125,7 @@
     <div class="row">
         <div class="col-md-6 mb-4">
             <span class="eyebrow">Cómo llegar</span>
-            <h2 class="mb-3">Ubicación</h2>
+            <h2 class="mb-3 texto-acento">Ubicación</h2>
             <p class="fs-5">
                 225 metros de la Municipalidad de Moravia, camino al estadio.<br />
                 San Vicente, Moravia, San José, Costa Rica.
@@ -142,10 +139,16 @@
         </div>
         <div class="col-md-6 mb-4">
             <span class="eyebrow">Hablemos</span>
-            <h2 class="mb-3">Contáctanos</h2>
+            <h2 class="mb-3 texto-acento">Contáctanos</h2>
             <ul class="list-unstyled fs-5">
-                <li class="mb-3"><strong>Teléfono:</strong> <span class="font-mono">8772-0832</span></li>
-                <li class="mb-3"><strong>Correo:</strong> bio-sport@hotmail.com</li>
+                <li class="mb-3">
+                    <strong>Teléfono:</strong>
+                    <a href="https://wa.me/50685687154" target="_blank" class="font-mono">8568-7154 (WhatsApp)</a>
+                </li>
+                <li class="mb-3">
+                    <strong>Correo:</strong>
+                    <a href="mailto:bio-sport@hotmail.com">bio-sport@hotmail.com</a>
+                </li>
                 <li class="mb-3">
                     <strong>Facebook:</strong>
                     <a href="https://www.facebook.com/p/Gimnasio-Bio-Sport-100050566386030/?locale=es_LA" target="_blank">
@@ -153,7 +156,7 @@
                     </a>
                 </li>
             </ul>
-            <a asp-controller="Account" asp-action="Register" class="btn btn-success btn-lg mt-3">Únete a la Familia BioSport</a>
+            <a href="https://wa.me/50685687154?text=Hola%2C%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n" target="_blank" class="btn btn-success btn-lg mt-3">Únete a la Familia BioSport</a>
         </div>
     </div>
 </div>
