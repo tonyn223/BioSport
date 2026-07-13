@@ -54,13 +54,26 @@
         <span class="eyebrow">Instalaciones</span>
         <h2 class="mb-4 texto-acento">Así se entrena en BioSport</h2>
 
-        <p class="foto-instalacion-label">Zona de pesas y máquinas</p>
-        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWnvs97Wb4WHyPLBwTHYWQ2TAOb7O7rLDjUTGNQtFZXjsOHNYgVNyTQQ0bbIeordRA-NQhjdvfQmn--2PGmxYcqda3udHzbnOQxqlwSEVpHnA-B1NMY6opmmJjo2L5XbSdwTI67A=s1360-w1360-h1020-rw"
-             class="foto-instalacion mb-5" alt="Zona de pesas del gimnasio BioSport" loading="lazy" />
-
-        <p class="foto-instalacion-label">Área de máquinas y cardio</p>
-        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWkgh8hUP3RadxgbBYDNXu3dUuUz5PrdFhpsYh3C8_5fL-7aoc-PEScN3jpY62TS-kvvisgVihPlSimBqNSLh_DX-MBbmj02vxgUFTlWFYK42fnbuI74xbsNQrxwgV-j2YK9G8l2=s1360-w1360-h1020-rw"
-             class="foto-instalacion" alt="Área de máquinas del gimnasio BioSport" loading="lazy" />
+        <div class="galeria-carrusel">
+            <button type="button" class="galeria-flecha galeria-flecha-prev" aria-label="Foto anterior">‹</button>
+            <div class="galeria-track" id="galeria-instalaciones">
+                <figure class="galeria-slide">
+                    <button type="button" class="galeria-slide-btn" data-lightbox-src="@Url.Content("~/images/interior-zona-pesas.jpeg")" data-lightbox-alt="Zona de pesas del gimnasio BioSport">
+                        <img src="~/images/interior-zona-pesas.jpeg"
+                             class="galeria-slide-img" alt="Zona de pesas del gimnasio BioSport" loading="lazy" />
+                    </button>
+                    <figcaption class="foto-instalacion-label">Zona de pesas y máquinas</figcaption>
+                </figure>
+                <figure class="galeria-slide">
+                    <button type="button" class="galeria-slide-btn" data-lightbox-src="@Url.Content("~/images/interior-maquinas.jpeg")" data-lightbox-alt="Área de máquinas del gimnasio BioSport">
+                        <img src="~/images/interior-maquinas.jpeg"
+                             class="galeria-slide-img" alt="Área de máquinas del gimnasio BioSport" loading="lazy" />
+                    </button>
+                    <figcaption class="foto-instalacion-label">Área de máquinas y cardio</figcaption>
+                </figure>
+            </div>
+            <button type="button" class="galeria-flecha galeria-flecha-next" aria-label="Foto siguiente">›</button>
+        </div>
     </div>
 </div>
 

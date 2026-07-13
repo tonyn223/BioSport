@@ -40,3 +40,57 @@
         });
     });
 })();
+
+// Carrusel de instalaciones: flechas para desplazar el track horizontal
+(function () {
+    document.querySelectorAll('.galeria-carrusel').forEach(function (carrusel) {
+        var track = carrusel.querySelector('.galeria-track');
+        var prev = carrusel.querySelector('.galeria-flecha-prev');
+        var next = carrusel.querySelector('.galeria-flecha-next');
+        if (!track) return;
+
+        function desplazar(direccion) {
+            var slide = track.querySelector('.galeria-slide');
+            var distancia = slide ? slide.getBoundingClientRect().width + 20 : track.clientWidth * 0.8;
+            track.scrollBy({ left: direccion * distancia, behavior: 'smooth' });
+        }
+
+        if (prev) prev.addEventListener('click', function () { desplazar(-1); });
+        if (next) next.addEventListener('click', function () { desplazar(1); });
+    });
+})();
+
+// Lightbox: amplía las fotos de la galería al hacer clic
+(function () {
+    var overlay = document.getElementById('lightbox-overlay');
+    var img = document.getElementById('lightbox-img');
+    var cerrar = document.getElementById('lightbox-cerrar');
+    if (!overlay || !img) return;
+
+    function abrir(src, alt) {
+        img.src = src;
+        img.alt = alt || '';
+        overlay.classList.add('activo');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function cerrarLightbox() {
+        overlay.classList.remove('activo');
+        document.body.style.overflow = '';
+        img.src = '';
+    }
+
+    document.querySelectorAll('[data-lightbox-src]').forEach(function (el) {
+        el.addEventListener('click', function () {
+            abrir(el.getAttribute('data-lightbox-src'), el.getAttribute('data-lightbox-alt'));
+        });
+    });
+
+    cerrar.addEventListener('click', cerrarLightbox);
+    overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) cerrarLightbox();
+    });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') cerrarLightbox();
+    });
+})();

@@ -95,6 +95,8 @@ a:hover {
   background-color: var(--grafito) !important;
   border-bottom: 3px solid transparent;
   border-image: var(--gradiente-biosport) 1;
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
 }
 .navbar-brand {
   display: flex;
@@ -112,7 +114,7 @@ a:hover {
   }
 }
 .navbar-logo-img {
-  height: 52px;
+  height: 72px;
   width: auto;
   filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
   transition: transform 0.2s ease;
@@ -132,8 +134,8 @@ a:hover {
   border: 1.5px solid rgba(243, 239, 230, 0.3);
   color: var(--hueso);
   border-radius: 999px;
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -146,8 +148,8 @@ a:hover {
   transform: scale(1.06);
 }
 .theme-toggle-btn svg {
-  width: 18px;
-  height: 18px;
+  width: 21px;
+  height: 21px;
   stroke: currentColor;
 }
 html[data-bs-theme="light"] .theme-toggle-btn .icon-sun,
@@ -158,11 +160,11 @@ html[data-bs-theme="dark"] .theme-toggle-btn .icon-moon {
   color: var(--hueso) !important;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   line-height: 1;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  padding: 0.6rem 0.15rem !important;
+  padding: 0.7rem 0.15rem !important;
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -484,26 +486,145 @@ footer a {
   box-shadow: 0 20px 44px rgba(33, 31, 26, 0.24);
 }
 
-/* --- Fotos grandes de instalaciones (completas, sin recorte, sin marco) --- */
-.foto-instalacion-label {
-  font-family: 'IBM Plex Mono', monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.8rem;
-  color: var(--texto-pagina-suave);
-  margin-bottom: 0.7rem;
+/* --- Carrusel de instalaciones (desplazable, con vista ampliada) --- */
+.galeria-carrusel {
+  position: relative;
 }
-.foto-instalacion {
+.galeria-track {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 0.25rem 0.25rem 1rem;
+  margin: 0 -0.25rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ambar-oscuro) transparent;
+}
+.galeria-track::-webkit-scrollbar {
+  height: 8px;
+}
+.galeria-track::-webkit-scrollbar-thumb {
+  background: var(--gradiente-biosport);
+  border-radius: 999px;
+}
+.galeria-slide {
+  flex: 0 0 82%;
+  max-width: 520px;
+  scroll-snap-align: start;
+  margin: 0;
+}
+@media (min-width: 768px) {
+  .galeria-slide {
+    flex-basis: 56%;
+  }
+}
+.galeria-slide-btn {
+  display: block;
   width: 100%;
-  height: auto;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: zoom-in;
+  border-radius: 14px;
+}
+.galeria-slide-img {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
   display: block;
   border-radius: 14px;
   box-shadow: 0 16px 34px rgba(33, 31, 26, 0.2);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.foto-instalacion:hover {
-  transform: translateY(-3px);
+.galeria-slide-btn:hover .galeria-slide-img,
+.galeria-slide-btn:focus-visible .galeria-slide-img {
+  transform: translateY(-3px) scale(1.01);
   box-shadow: 0 20px 40px rgba(33, 31, 26, 0.28);
+}
+.galeria-slide figcaption {
+  margin-top: 0.7rem;
+}
+.galeria-flecha {
+  position: absolute;
+  top: 42%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: rgba(33, 31, 26, 0.75);
+  color: var(--hueso);
+  border: 1.5px solid rgba(243, 239, 230, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+.galeria-flecha:hover {
+  border-color: var(--ambar);
+  background: rgba(33, 31, 26, 0.92);
+}
+.galeria-flecha-prev {
+  left: -6px;
+}
+.galeria-flecha-next {
+  right: -6px;
+}
+@media (max-width: 576px) {
+  .galeria-flecha {
+    display: none;
+  }
+}
+
+/* --- Lightbox: vista ampliada de las fotos --- */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 13, 10, 0.94);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  z-index: 1090;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease;
+}
+.lightbox-overlay.activo {
+  opacity: 1;
+  visibility: visible;
+}
+.lightbox-overlay img {
+  max-width: 100%;
+  max-height: 88vh;
+  border-radius: 10px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
+}
+.lightbox-cerrar {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: rgba(243, 239, 230, 0.1);
+  border: 1.5px solid rgba(243, 239, 230, 0.35);
+  color: var(--hueso);
+  font-size: 1.5rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.lightbox-cerrar:hover {
+  border-color: var(--ambar);
+  color: var(--ambar);
 }
 
 /* --- Sección con marca de agua del logo --- */
@@ -553,7 +674,6 @@ footer a {
   color: var(--grafito);
 }
 [data-bs-theme="dark"] .about-panel,
-[data-bs-theme="dark"] .foto-instalacion,
-[data-bs-theme="dark"] .galeria-img {
+[data-bs-theme="dark"] .galeria-slide-img {
   box-shadow: 0 16px 34px rgba(0, 0, 0, 0.5);
 }
