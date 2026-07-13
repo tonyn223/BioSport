@@ -112,9 +112,9 @@ namespace BioSport.Controllers
             var idUsuario = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
             var usuario = await _context.Usuarios.FindAsync(idUsuario);
 
-            if (usuario == null || !BCrypt.Net.BCrypt.Verify(model.ContrasenaActual, usuario.Contrasena))
+            if (usuario == null || usuario.CodigoAcceso != model.CodigoAcceso)
             {
-                ModelState.AddModelError(nameof(model.ContrasenaActual), "La contraseña actual es incorrecta.");
+                ModelState.AddModelError(nameof(model.CodigoAcceso), "El código de acceso es incorrecto.");
                 return View(model);
             }
 

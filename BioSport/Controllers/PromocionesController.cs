@@ -87,9 +87,16 @@ namespace BioSport.Controllers
             var promocion = await _context.Promociones.FindAsync(id);
             if (promocion != null)
             {
-                _context.Promociones.Remove(promocion);
-                await _context.SaveChangesAsync();
-                TempData["Mensaje"] = "Promoción eliminada exitosamente.";
+                try
+                {
+                    _context.Promociones.Remove(promocion);
+                    await _context.SaveChangesAsync();
+                    TempData["Mensaje"] = "Promoción eliminada exitosamente.";
+                }
+                catch (DbUpdateException)
+                {
+                    TempData["Error"] = "No se pudo eliminar esta promoción porque tiene registros asociados.";
+                }
             }
             return RedirectToAction(nameof(Index));
         }

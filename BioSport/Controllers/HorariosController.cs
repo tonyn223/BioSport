@@ -87,9 +87,16 @@ namespace BioSport.Controllers
             var horario = await _context.Horarios.FindAsync(id);
             if (horario != null)
             {
-                _context.Horarios.Remove(horario);
-                await _context.SaveChangesAsync();
-                TempData["Mensaje"] = "Horario eliminado exitosamente.";
+                try
+                {
+                    _context.Horarios.Remove(horario);
+                    await _context.SaveChangesAsync();
+                    TempData["Mensaje"] = "Horario eliminado exitosamente.";
+                }
+                catch (DbUpdateException)
+                {
+                    TempData["Error"] = "No se pudo eliminar este horario porque tiene registros asociados.";
+                }
             }
             return RedirectToAction(nameof(Index));
         }

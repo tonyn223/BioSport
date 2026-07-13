@@ -18,6 +18,7 @@
                 <th>Peso (kg)</th>
                 <th>Observaciones</th>
                 <th>Fecha</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -28,6 +29,10 @@
                     <td>@p.Peso</td>
                     <td>@p.Observaciones</td>
                     <td>@p.FechaRegistro?.ToString("dd/MM/yyyy")</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@p.IdProgreso" class="btn btn-sm btn-warning">Editar</a>
+                        <a asp-action="Delete" asp-route-id="@p.IdProgreso" class="btn btn-sm btn-danger">Eliminar</a>
+                    </td>
                 </tr>
             }
         </tbody>

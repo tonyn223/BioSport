@@ -1,0 +1,65 @@
+@model BioSport.Models.Membresia
+@{
+    ViewData["Title"] = "Editar Membresía";
+    var planes = ViewBag.Planes as List<BioSport.Models.Plan>;
+}
+
+<div class="container mt-4">
+    <h1 class="text-primary mb-4">Editar Membresía de @(Model.Usuario?.Nombre ?? "Cliente")</h1>
+
+    <div class="card shadow p-4" style="max-width: 600px;">
+        <form asp-action="Edit" method="post">
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger">
+                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                    {
+                        <p class="mb-0">@error.ErrorMessage</p>
+                    }
+                </div>
+            }
+
+            <input type="hidden" asp-for="IdMembresia" />
+            <input type="hidden" asp-for="IdUsuario" />
+
+            <div class="mb-3">
+                <label class="form-label">Cliente</label>
+                <input class="form-control" value="@(Model.Usuario?.Nombre ?? "N/A")" disabled />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="IdPlan" class="form-label">Plan</label>
+                <select asp-for="IdPlan" class="form-control">
+                    @if (planes != null)
+                    {
+                        @foreach (var plan in planes)
+                        {
+                            <option value="@plan.IdPlan">@plan.Nombre</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="FechaInicio" class="form-label">Fecha de Inicio</label>
+                <input asp-for="FechaInicio" class="form-control" type="datetime-local" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="FechaVencimiento" class="form-label">Fecha de Vencimiento</label>
+                <input asp-for="FechaVencimiento" class="form-control" type="datetime-local" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Estado" class="form-label">Estado</label>
+                <select asp-for="Estado" class="form-control">
+                    <option value="Activo">Activo</option>
+                    <option value="Inactivo">Inactivo</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>

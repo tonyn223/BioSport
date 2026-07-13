@@ -4,10 +4,9 @@ namespace BioSport.ViewModels
 {
     public class CambiarContrasenaViewModel
     {
-        [Required(ErrorMessage = "La contraseña actual es requerida")]
-        [DataType(DataType.Password)]
-        [Display(Name = "Contraseña Actual")]
-        public string ContrasenaActual { get; set; } = string.Empty;
+        [Required(ErrorMessage = "El código de acceso es requerido")]
+        [Display(Name = "Código de Acceso")]
+        public string CodigoAcceso { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "La nueva contraseña es requerida")]
         [DataType(DataType.Password)]

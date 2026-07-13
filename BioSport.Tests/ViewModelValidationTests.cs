@@ -51,7 +51,7 @@ namespace BioSport.Tests
         {
             var modelo = new CambiarContrasenaViewModel
             {
-                ContrasenaActual = "actual123",
+                CodigoAcceso = "1234",
                 NuevaContrasena = "123",
                 ConfirmarContrasena = "123"
             };

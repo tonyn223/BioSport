@@ -83,5 +83,84 @@ namespace BioSport.Controllers
 
             return View(progreso);
         }
+
+        // GET: /Progreso/Edit/5
+        public async Task<IActionResult> Edit(int id)
+        {
+            var idEntrenador = ObtenerIdUsuarioActual();
+            var progreso = await _context.Progresos
+                .Include(p => p.Cliente)
+                .FirstOrDefaultAsync(p => p.IdProgreso == id && p.IdEntrenador == idEntrenador);
+
+            if (progreso == null)
+            {
+                return NotFound();
+            }
+
+            return View(progreso);
+        }
+
+        // POST: /Progreso/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, Progreso progreso)
+        {
+            var idEntrenador = ObtenerIdUsuarioActual();
+
+            if (id != progreso.IdProgreso)
+            {
+                return NotFound();
+            }
+
+            var registroExistente = await _context.Progresos
+                .FirstOrDefaultAsync(p => p.IdProgreso == id && p.IdEntrenador == idEntrenador);
+
+            if (registroExistente == null)
+            {
+                return NotFound();
+            }
+
+            registroExistente.Peso = progreso.Peso;
+            registroExistente.Observaciones = progreso.Observaciones;
+
+            await _context.SaveChangesAsync();
+            TempData["Mensaje"] = "Progreso actualizado exitosamente.";
+            return RedirectToAction(nameof(Index));
+        }
+
+        // GET: /Progreso/Delete/5
+        public async Task<IActionResult> Delete(int id)
+        {
+            var idEntrenador = ObtenerIdUsuarioActual();
+            var progreso = await _context.Progresos
+                .Include(p => p.Cliente)
+                .FirstOrDefaultAsync(p => p.IdProgreso == id && p.IdEntrenador == idEntrenador);
+
+            if (progreso == null)
+            {
+                return NotFound();
+            }
+
+            return View(progreso);
+        }
+
+        // POST: /Progreso/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var idEntrenador = ObtenerIdUsuarioActual();
+            var progreso = await _context.Progresos
+                .FirstOrDefaultAsync(p => p.IdProgreso == id && p.IdEntrenador == idEntrenador);
+
+            if (progreso != null)
+            {
+                _context.Progresos.Remove(progreso);
+                await _context.SaveChangesAsync();
+                TempData["Mensaje"] = "Registro de progreso eliminado exitosamente.";
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

@@ -19,6 +19,7 @@
                 <th>Inicio</th>
                 <th>Vencimiento</th>
                 <th>Estado</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -39,6 +40,9 @@
                         {
                             <span class="badge bg-success">@m.Estado</span>
                         }
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@m.IdMembresia" class="btn btn-sm btn-warning">Editar</a>
                     </td>
                 </tr>
             }

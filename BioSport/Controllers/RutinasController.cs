@@ -140,13 +140,20 @@ namespace BioSport.Controllers
 
             if (rutina != null)
             {
-                // Elimina primero las asignaciones relacionadas
-                var asignaciones = _context.RutinasAsignadas.Where(ra => ra.IdRutina == id);
-                _context.RutinasAsignadas.RemoveRange(asignaciones);
+                try
+                {
+                    // Elimina primero las asignaciones relacionadas
+                    var asignaciones = _context.RutinasAsignadas.Where(ra => ra.IdRutina == id);
+                    _context.RutinasAsignadas.RemoveRange(asignaciones);
 
-                _context.Rutinas.Remove(rutina);
-                await _context.SaveChangesAsync();
-                TempData["Mensaje"] = "Rutina eliminada exitosamente.";
+                    _context.Rutinas.Remove(rutina);
+                    await _context.SaveChangesAsync();
+                    TempData["Mensaje"] = "Rutina eliminada exitosamente.";
+                }
+                catch (DbUpdateException)
+                {
+                    TempData["Error"] = "No se pudo eliminar esta rutina porque tiene registros asociados.";
+                }
             }
 
             return RedirectToAction(nameof(Index));
@@ -223,6 +230,27 @@ namespace BioSport.Controllers
                 .ToListAsync();
 
             return View(asignaciones);
+        }
+
+        // POST: /Rutinas/Desasignar/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Desasignar(int id)
+        {
+            var idEntrenador = ObtenerIdUsuarioActual();
+
+            var asignacion = await _context.RutinasAsignadas
+                .Include(ra => ra.Rutina)
+                .FirstOrDefaultAsync(ra => ra.IdAsignacion == id && ra.Rutina!.IdEntrenador == idEntrenador);
+
+            if (asignacion != null)
+            {
+                _context.RutinasAsignadas.Remove(asignacion);
+                await _context.SaveChangesAsync();
+                TempData["Mensaje"] = "Rutina desasignada del cliente exitosamente.";
+            }
+
+            return RedirectToAction(nameof(MisClientes));
         }
     }
 }

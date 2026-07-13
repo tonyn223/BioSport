@@ -1,0 +1,28 @@
+@model BioSport.Models.Progreso
+@{
+    ViewData["Title"] = "Eliminar Progreso";
+}
+
+<div class="container mt-4">
+    <h1 class="text-danger mb-4">Eliminar Registro de Progreso</h1>
+
+    <div class="card shadow p-4" style="max-width: 600px;">
+        <p>¿Estás seguro que deseas eliminar este registro de progreso?</p>
+        <dl class="row">
+            <dt class="col-sm-4">Cliente:</dt>
+            <dd class="col-sm-8">@(Model.Cliente?.Nombre ?? "N/A")</dd>
+            <dt class="col-sm-4">Peso:</dt>
+            <dd class="col-sm-8">@Model.Peso kg</dd>
+            <dt class="col-sm-4">Fecha:</dt>
+            <dd class="col-sm-8">@Model.FechaRegistro?.ToString("dd/MM/yyyy")</dd>
+            <dt class="col-sm-4">Observaciones:</dt>
+            <dd class="col-sm-8">@Model.Observaciones</dd>
+        </dl>
+
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="IdProgreso" />
+            <button type="submit" class="btn btn-danger">Confirmar Eliminación</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>

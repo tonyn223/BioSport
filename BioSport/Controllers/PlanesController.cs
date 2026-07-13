@@ -94,9 +94,17 @@ namespace BioSport.Controllers
             var plan = await _context.Planes.FindAsync(id);
             if (plan != null)
             {
-                _context.Planes.Remove(plan);
-                await _context.SaveChangesAsync();
-                TempData["Mensaje"] = "Plan eliminado exitosamente.";
+                try
+                {
+                    _context.Planes.Remove(plan);
+                    await _context.SaveChangesAsync();
+                    TempData["Mensaje"] = "Plan eliminado exitosamente.";
+                }
+                catch (DbUpdateException)
+                {
+                    TempData["Error"] = "No se puede eliminar este plan porque tiene membresías asociadas. " +
+                        "Elimina o reasigna esas membresías primero.";
+                }
             }
             return RedirectToAction(nameof(Index));
         }

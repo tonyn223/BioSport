@@ -13,6 +13,7 @@
                 <th>Cliente</th>
                 <th>Rutina</th>
                 <th>Fecha Asignación</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -22,6 +23,12 @@
                     <td>@(item.Cliente?.Nombre ?? "N/A")</td>
                     <td>@(item.Rutina?.Nombre ?? "N/A")</td>
                     <td>@item.FechaAsignacion?.ToString("dd/MM/yyyy")</td>
+                    <td>
+                        <form asp-action="Desasignar" asp-route-id="@item.IdAsignacion" method="post"
+                              onsubmit="return confirm('¿Quitar esta rutina del cliente?');" style="display:inline;">
+                            <button type="submit" class="btn btn-sm btn-danger">Desasignar</button>
+                        </form>
+                    </td>
                 </tr>
             }
         </tbody>

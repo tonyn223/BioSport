@@ -155,9 +155,52 @@ namespace BioSport.Controllers
             var usuario = await _context.Usuarios.FindAsync(id);
             if (usuario != null)
             {
-                _context.Usuarios.Remove(usuario);
-                await _context.SaveChangesAsync();
-                TempData["Mensaje"] = "Usuario eliminado exitosamente.";
+                using var transaccion = await _context.Database.BeginTransactionAsync();
+                try
+                {
+                    // Rutinas asignadas donde el usuario es el cliente
+                    await _context.RutinasAsignadas
+                        .Where(ra => ra.IdCliente == id)
+                        .ExecuteDeleteAsync();
+
+                    // Progreso donde el usuario es cliente o entrenador
+                    await _context.Progresos
+                        .Where(p => p.IdCliente == id || p.IdEntrenador == id)
+                        .ExecuteDeleteAsync();
+
+                    // Rutinas creadas por el usuario como entrenador: primero sus asignaciones a clientes
+                    var idsRutinasPropias = await _context.Rutinas
+                        .Where(r => r.IdEntrenador == id)
+                        .Select(r => r.IdRutina)
+                        .ToListAsync();
+
+                    if (idsRutinasPropias.Count > 0)
+                    {
+                        await _context.RutinasAsignadas
+                            .Where(ra => idsRutinasPropias.Contains(ra.IdRutina))
+                            .ExecuteDeleteAsync();
+
+                        await _context.Rutinas
+                            .Where(r => idsRutinasPropias.Contains(r.IdRutina))
+                            .ExecuteDeleteAsync();
+                    }
+
+                    // Pagos, membresías y asistencia del usuario
+                    await _context.Pagos.Where(p => p.IdUsuario == id).ExecuteDeleteAsync();
+                    await _context.Membresias.Where(m => m.IdUsuario == id).ExecuteDeleteAsync();
+                    await _context.Asistencias.Where(a => a.IdUsuario == id).ExecuteDeleteAsync();
+
+                    _context.Usuarios.Remove(usuario);
+                    await _context.SaveChangesAsync();
+
+                    await transaccion.CommitAsync();
+                    TempData["Mensaje"] = "Usuario y todos sus registros asociados fueron eliminados exitosamente.";
+                }
+                catch (DbUpdateException)
+                {
+                    await transaccion.RollbackAsync();
+                    TempData["Error"] = "No se pudo eliminar este usuario debido a un error inesperado.";
+                }
             }
             return RedirectToAction(nameof(Index));
         }

@@ -59,18 +59,39 @@ namespace BioSport.Controllers
             }
 
             var fechaInicio = DateTime.Now;
-            var fechaVencimiento = fechaInicio.AddDays(plan.DuracionDias);
 
-            var membresia = new Membresia
+            // Cada usuario debe tener una sola membresía: si ya tiene una, se renueva/actualiza
+            // en vez de crear una fila nueva (los pagos sí se acumulan como historial).
+            var membresia = await _context.Membresias
+                .FirstOrDefaultAsync(m => m.IdUsuario == usuario.IdUsuario);
+
+            // Si la membresía actual sigue vigente, la renovación extiende desde su vencimiento
+            // en vez de la fecha de hoy, para no perder los días ya pagados.
+            var fechaBase = (membresia != null && membresia.FechaVencimiento > fechaInicio)
+                ? membresia.FechaVencimiento
+                : fechaInicio;
+            var fechaVencimiento = fechaBase.AddDays(plan.DuracionDias);
+
+            if (membresia == null)
             {
-                IdUsuario = usuario.IdUsuario,
-                IdPlan = plan.IdPlan,
-                FechaInicio = fechaInicio,
-                FechaVencimiento = fechaVencimiento,
-                Estado = "Activo"
-            };
+                membresia = new Membresia
+                {
+                    IdUsuario = usuario.IdUsuario,
+                    IdPlan = plan.IdPlan,
+                    FechaInicio = fechaInicio,
+                    FechaVencimiento = fechaVencimiento,
+                    Estado = "Activo"
+                };
+                _context.Membresias.Add(membresia);
+            }
+            else
+            {
+                membresia.IdPlan = plan.IdPlan;
+                membresia.FechaInicio = fechaInicio;
+                membresia.FechaVencimiento = fechaVencimiento;
+                membresia.Estado = "Activo";
+            }
 
-            _context.Membresias.Add(membresia);
             await _context.SaveChangesAsync();
 
             var pago = new Pago
@@ -88,6 +109,57 @@ namespace BioSport.Controllers
 
             TempData["Mensaje"] = $"Membresía '{plan.Nombre}' asignada a {usuario.Nombre}. Pago de ₡{plan.Precio:N0} registrado.";
             return RedirectToAction(nameof(Index));
+        }
+
+        // GET: /Membresias/Edit/5
+        public async Task<IActionResult> Edit(int id)
+        {
+            var membresia = await _context.Membresias
+                .Include(m => m.Usuario)
+                .FirstOrDefaultAsync(m => m.IdMembresia == id);
+
+            if (membresia == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.Planes = _context.Planes.ToList();
+            return View(membresia);
+        }
+
+        // POST: /Membresias/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, Membresia membresia)
+        {
+            if (id != membresia.IdMembresia)
+            {
+                return NotFound();
+            }
+
+            ModelState.Remove("Usuario");
+            ModelState.Remove("Plan");
+
+            if (ModelState.IsValid)
+            {
+                var existente = await _context.Membresias.FindAsync(id);
+                if (existente == null)
+                {
+                    return NotFound();
+                }
+
+                existente.IdPlan = membresia.IdPlan;
+                existente.FechaInicio = membresia.FechaInicio;
+                existente.FechaVencimiento = membresia.FechaVencimiento;
+                existente.Estado = membresia.Estado;
+
+                await _context.SaveChangesAsync();
+                TempData["Mensaje"] = "Membresía actualizada exitosamente.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            ViewBag.Planes = _context.Planes.ToList();
+            return View(membresia);
         }
     }
 }
