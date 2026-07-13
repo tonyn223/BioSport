@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - BioSport</title>
-    <link rel="icon" type="image/png" href="~/images/logo-transparente.png" />
+    <link rel="icon" type="image/png" href="~/images/logo-transparente.png" asp-append-version="true" />
     <script>
         (function () {
             var guardado = localStorage.getItem('biosport-theme');
@@ -20,7 +20,7 @@
         <nav class="navbar navbar-expand-sm navbar-dark mb-3">
             <div class="container-fluid position-relative">
                 <a class="navbar-brand navbar-brand-center" asp-controller="Home" asp-action="Index">
-                    <img src="~/images/logo-transparente.png" alt="BioSport" class="navbar-logo-img" />
+                    <img src="~/images/logo-transparente.png" alt="BioSport" class="navbar-logo-img" asp-append-version="true" />
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -108,7 +108,7 @@
     <footer class="py-4 mt-5">
         <div class="container text-center">
             <p class="mb-1 font-mono d-flex align-items-center justify-content-center" style="letter-spacing: 0.05em;">
-                <img src="~/images/logo-transparente.png" alt="BioSport" class="footer-logo-img" />
+                <img src="~/images/logo-transparente.png" alt="BioSport" class="footer-logo-img" asp-append-version="true" />
                 © 2026 - BIOSPORT GYM
             </p>
             <small>San Vicente de Moravia, San José · <a asp-controller="Home" asp-action="Privacy">Privacidad</a></small>
